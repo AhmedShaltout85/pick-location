@@ -1,0 +1,81 @@
+GET http://localhost:9999/pick-location/api/v1/get-loc/filter
+
+[
+    {
+        "id": 0,
+        "address": "43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340",
+        "latitude": "31.254016516",
+        "longitude": "29.99360036"
+    }
+]
+
+PUT http://localhost:9999/pick-location/api/v1/get-loc/1
+
+{
+"latitude": "31.254016516",
+"longitude": "29.99360036",
+"flag":1
+}
+
+GET http://localhost:9999/pick-location/api/v1/get-loc/flag/0
+
+IF NO DATA FOUND:
+{
+    "code": "404",
+    "message": "Sorry, No DATA Found!...",
+    "timestamp": "05-10-2024 08:43:47"
+}
+
+
+to deploy war :->(MUST)
+1-setup jdk in host server with the same version of war package number
+
+ $ update-alternatives --list java
+/usr/bin/gij-5
+/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+to find java.security file to remove ssl
+
+
+@SpringBootApplication
+public class AwLabsAppApplication extends SpringBootServletInitializer {
+
+
+	public static void main(String[] args) {
+
+		SpringApplication.run(AwLabsAppApplication.class, args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return super.configure(builder);
+	}
+
+-----
+or create project in initilizer with war package
+and run it :
+mvn spring-boot:run for testing
+
+2-install mvn compatible with jdk version
+
+3- run:
+mv to app folder:
+
+mvn clean
+mvn install
+mvn spring-boot:run (act like tomcat deploy)
+or
+java -jar app.jar || app.war (act like tomcat deploy)
+
+4- must define "/app-name" as context-path in app.properties file.
+
+change spring boot version in pom.xml to 3.1.5 with jdk 17
+copy war from terminal and tomcat stop with permission
+like this in linux:
+
+ahmedshaltout@devPC:~/Desktop/apache-tomcat-10.1.19/webapps$ sudo cp /home/ahmedshaltout/Desktop/RESTFulAPIApps/aw-labs-apps/target/aw-labs-apps.war .
+ahmedshaltout@devPC:~/Desktop/apache-tomcat-10.1.19/webapps$ chmod +x aw-labs-apps.war
+chmod: changing permissions of 'aw-labs-apps.war': Operation not permitted
+ahmedshaltout@devPC:~/Desktop/apache-tomcat-10.1.19/webapps$ sudo !!
+sudo chmod +x aw-labs-apps.war
+ahmedshaltout@devPC:~/Desktop/apache-tomcat-10.1.19/webapps$ sudo chmod +xrw aw-labs-apps.war
+ahmedshaltout@devPC:~/Desktop/apache-tomcat-10.1.19/webapps$
