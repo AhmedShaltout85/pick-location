@@ -27,5 +27,7 @@ public class PickLocationEntity {
     private String longitude;
     @Column(name = "Flag")
     private int flag;
+    @Column(name = "Raddress")
+    private String real_address;
 
 }

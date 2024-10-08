@@ -30,7 +30,6 @@ public class PickLocationServicesImpl implements IPickLocationServices {
     public ResponseEntity<List<PickLocationDTO>> getAddress() {
 
         List<PickLocationEntity> pickLocationEntities = iPickLocationRepository.findAll();
-//        List<PickLocationEntity> pickLocationEntities = iPickLocationRepository.GetAddress();
         List<PickLocationDTO> labsDailyTestDTOList = pickLocationEntities
                 .stream()
                 .map(I_PICK_LOCATION_MAPPER::pickLocationEntityToPickLocationDTO)
@@ -67,6 +66,7 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         exitingPickLocationEntity.setLatitude(newPickLocationDTO.getLatitude());
         exitingPickLocationEntity.setLongitude(newPickLocationDTO.getLongitude());
         exitingPickLocationEntity.setFlag(newPickLocationDTO.getFlag());
+        exitingPickLocationEntity.setReal_address(newPickLocationDTO.getReal_address());
         PickLocationEntity updatePickLocationEntity = iPickLocationRepository.save(exitingPickLocationEntity);
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);

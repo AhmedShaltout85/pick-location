@@ -2,7 +2,6 @@ package com.a08r.pick_location.repositores;
 
 import com.a08r.pick_location.models.location.PickLocationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
