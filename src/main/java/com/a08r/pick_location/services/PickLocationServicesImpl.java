@@ -57,6 +57,23 @@ public class PickLocationServicesImpl implements IPickLocationServices {
     }
 
     @Override
+    public ResponseEntity<PickLocationDTO> createAddress(PickLocationDTO newPickLocationDTO) {
+        // Check if address with the given id already exists(comment now because address is not unique, we don't need to send it)
+        // Check if address with the given id already exists
+//        Optional<PickLocationEntity> existingAddress = iPickLocationRepository.findById(newPickLocationDTO.getId());
+//
+//        if (existingAddress.isPresent()) {
+//            // Return some message indicating the address already exists
+//            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+//        }
+        final PickLocationEntity pickLocationEntity = I_PICK_LOCATION_MAPPER.pickLocationDTOToPickLocationEntity(newPickLocationDTO);
+       final PickLocationEntity createPickLocationEntity = this.iPickLocationRepository.save(pickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(createPickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.CREATED);
+
+    }
+
+    @Override
     public ResponseEntity<PickLocationDTO> updateAddress(Long id, PickLocationDTO newPickLocationDTO) {
         Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findById(id);
         if (pickLocationEntity.isEmpty()) {

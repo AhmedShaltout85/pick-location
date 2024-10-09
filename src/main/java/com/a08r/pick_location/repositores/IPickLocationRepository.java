@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IPickLocationRepository extends JpaRepository<PickLocationEntity, Long> {
@@ -37,4 +38,5 @@ public interface IPickLocationRepository extends JpaRepository<PickLocationEntit
 //    void UpdateAddress(long id, String latitude, String longitude);
 
     List<PickLocationEntity> findByFlag(int flag);
+    Optional<PickLocationEntity> findByAddress(String address);
 }

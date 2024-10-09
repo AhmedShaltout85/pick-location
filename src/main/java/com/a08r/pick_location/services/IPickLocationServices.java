@@ -11,7 +11,7 @@ public interface IPickLocationServices {
 
     ResponseEntity<List<PickLocationDTO>> getPickLocationByFlag(int flag);
 
-//    ResponseEntity<PickLocationDTO> getAddress();
+    ResponseEntity<PickLocationDTO> createAddress(PickLocationDTO newPickLocationDTO);
 
     ResponseEntity<PickLocationDTO> updateAddress(Long id, PickLocationDTO newPickLocationDTO);
 
