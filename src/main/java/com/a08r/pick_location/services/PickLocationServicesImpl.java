@@ -90,6 +90,22 @@ public class PickLocationServicesImpl implements IPickLocationServices {
 
     }
 
+    @Override
+    public ResponseEntity<PickLocationDTO> updatePickLocationByAddress(String address, PickLocationDTO newPickLocationDTO) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        exitingPickLocationEntity.setLatitude(newPickLocationDTO.getLatitude());
+        exitingPickLocationEntity.setLongitude(newPickLocationDTO.getLongitude());
+        exitingPickLocationEntity.setFlag(newPickLocationDTO.getFlag());
+        exitingPickLocationEntity.setReal_address(newPickLocationDTO.getReal_address());
+        PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+
+    }
 
 
 }

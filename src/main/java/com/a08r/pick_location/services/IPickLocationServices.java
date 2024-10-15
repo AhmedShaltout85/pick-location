@@ -15,4 +15,5 @@ public interface IPickLocationServices {
 
     ResponseEntity<PickLocationDTO> updateAddress(Long id, PickLocationDTO newPickLocationDTO);
 
+    ResponseEntity<PickLocationDTO> updatePickLocationByAddress(String address, PickLocationDTO newPickLocationDTO);
 }

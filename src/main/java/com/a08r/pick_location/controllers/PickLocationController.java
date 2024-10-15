@@ -38,10 +38,17 @@ public class PickLocationController {
         return this.iPickLocationServices.createAddress(pickLocationDTO);
     }
 
-//TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/1
-    @PutMapping(path = "/{id}")
+//TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/id/1
+    @PutMapping(path = "/id/{id}")
     public ResponseEntity<PickLocationDTO> updateAddress(@PathVariable Long id,
                                                          @RequestBody PickLocationDTO pickLocationDTO){
         return this.iPickLocationServices.updateAddress(id, pickLocationDTO);
+    }
+
+//TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @PutMapping(path = "/address/{address}")
+    public ResponseEntity<PickLocationDTO> updatePickLocationByAddress(@PathVariable String address,
+                                                                      @RequestBody PickLocationDTO pickLocationDTO){
+        return this.iPickLocationServices.updatePickLocationByAddress(address, pickLocationDTO);
     }
 }
