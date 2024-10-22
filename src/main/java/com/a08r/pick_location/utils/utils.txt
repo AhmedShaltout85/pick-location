@@ -1,3 +1,6 @@
+disable:
+tomcat dependency: - when development stage
+
 https://documenter.getpostman.com/view/11963423/2sAXxQcrcV
 POSTMAN DOCUMENTATION
 
