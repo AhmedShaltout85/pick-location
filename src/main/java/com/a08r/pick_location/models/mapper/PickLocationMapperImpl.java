@@ -16,7 +16,7 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationEntity.setLatitude(pickLocationDTO.getLatitude());
         pickLocationEntity.setLongitude(pickLocationDTO.getLongitude());
         pickLocationEntity.setFlag(pickLocationDTO.getFlag());
-        pickLocationEntity.setReal_address(pickLocationDTO.getReal_address());
+        pickLocationEntity.setGis_url(pickLocationDTO.getGis_url());
 
         return pickLocationEntity;
     }
@@ -34,7 +34,7 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationDTO.setLatitude(pickLocationEntity.getLatitude());
         pickLocationDTO.setLongitude(pickLocationEntity.getLongitude());
         pickLocationDTO.setFlag(pickLocationEntity.getFlag());
-        pickLocationDTO.setReal_address(pickLocationEntity.getReal_address());
+        pickLocationDTO.setGis_url(pickLocationEntity.getGis_url());
 
         return pickLocationDTO;
 

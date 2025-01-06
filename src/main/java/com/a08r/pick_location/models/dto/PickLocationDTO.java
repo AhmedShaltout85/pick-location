@@ -14,6 +14,6 @@ public class PickLocationDTO {
     private String latitude;
     private String longitude;
     private int flag;
-    private String real_address;
+    private String gis_url;
 
 }

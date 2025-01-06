@@ -85,7 +85,7 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         exitingPickLocationEntity.setLatitude(newPickLocationDTO.getLatitude());
         exitingPickLocationEntity.setLongitude(newPickLocationDTO.getLongitude());
         exitingPickLocationEntity.setFlag(newPickLocationDTO.getFlag());
-        exitingPickLocationEntity.setReal_address(newPickLocationDTO.getReal_address());
+        exitingPickLocationEntity.setGis_url(newPickLocationDTO.getGis_url());
         PickLocationEntity updatePickLocationEntity = iPickLocationRepository.save(exitingPickLocationEntity);
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
@@ -102,7 +102,7 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         exitingPickLocationEntity.setLatitude(newPickLocationDTO.getLatitude());
         exitingPickLocationEntity.setLongitude(newPickLocationDTO.getLongitude());
         exitingPickLocationEntity.setFlag(newPickLocationDTO.getFlag());
-        exitingPickLocationEntity.setReal_address(newPickLocationDTO.getReal_address());
+        exitingPickLocationEntity.setGis_url(newPickLocationDTO.getGis_url());
         PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
