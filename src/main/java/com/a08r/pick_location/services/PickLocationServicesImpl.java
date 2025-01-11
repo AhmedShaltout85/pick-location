@@ -31,14 +31,14 @@ public class PickLocationServicesImpl implements IPickLocationServices {
     public ResponseEntity<List<PickLocationDTO>> getAddress() {
 
         List<PickLocationEntity> pickLocationEntities = iPickLocationRepository.findAll();
-        List<PickLocationDTO> labsDailyTestDTOList = pickLocationEntities
+        List<PickLocationDTO> pickLocationDTOList = pickLocationEntities
                 .stream()
                 .map(I_PICK_LOCATION_MAPPER::pickLocationEntityToPickLocationDTO)
                 .collect(Collectors.toList());
-        if (labsDailyTestDTOList.isEmpty()) {
+        if (pickLocationDTOList.isEmpty()) {
             throw new RecordNotFoundException("Sorry, No DATA Found!...");
         }
-        return new ResponseEntity<>(labsDailyTestDTOList, HttpStatus.OK);
+        return new ResponseEntity<>(pickLocationDTOList, HttpStatus.OK);
 
     }
 
@@ -46,15 +46,15 @@ public class PickLocationServicesImpl implements IPickLocationServices {
     public ResponseEntity<List<PickLocationDTO>> getPickLocationByFlag(int flag) {
 
         List<PickLocationEntity> pickLocationEntities = iPickLocationRepository.findByFlag(flag);
-        List<PickLocationDTO> labsDailyTestDTOList = pickLocationEntities
+        List<PickLocationDTO> pickLocationDTOList = pickLocationEntities
                 .stream()
                 .map(I_PICK_LOCATION_MAPPER::pickLocationEntityToPickLocationDTO)
                 .collect(Collectors.toList());
-        if (labsDailyTestDTOList.isEmpty()) {
+        if (pickLocationDTOList.isEmpty()) {
 //            throw new RecordNotFoundException("Sorry, No DATA Found!...");
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.OK);
         }
-        return new ResponseEntity<>(labsDailyTestDTOList, HttpStatus.OK);
+        return new ResponseEntity<>(pickLocationDTOList, HttpStatus.OK);
 
     }
 

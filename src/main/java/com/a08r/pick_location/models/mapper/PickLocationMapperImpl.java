@@ -11,7 +11,8 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
             throw new NullPointerException("pickLocationDTO should not be null");
         }
         PickLocationEntity pickLocationEntity = new PickLocationEntity();
-        pickLocationDTO.setId(pickLocationEntity.getId());
+//        pickLocationDTO.setId(pickLocationEntity.getId());
+        pickLocationEntity.setId(pickLocationDTO.getId());
         pickLocationEntity.setAddress(pickLocationDTO.getAddress());
         pickLocationEntity.setLatitude(pickLocationDTO.getLatitude());
         pickLocationEntity.setLongitude(pickLocationDTO.getLongitude());
