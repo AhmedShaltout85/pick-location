@@ -64,10 +64,10 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
     @Override
     public ResponseEntity<PickLocationUsersDTO> findUserByUserNameAndPassword(String userName, String password) {
         Optional<PickLocationUsersEntity> pickLocationUsersEntity = iPickLocationUsersRepository.findByUserNameAndPassword(userName, password);
-        if(pickLocationUsersEntity.isEmpty()){
-            throw new RecordNotFoundException("the item with UserName: "+userName +" and Password: "+password + " not found!...");
-
-        }
+//        if(pickLocationUsersEntity.isEmpty()){
+//            throw new RecordNotFoundException("the item with UserName: "+userName +" and Password: "+password + " not found!...");
+//
+//        }
         PickLocationUsersDTO pickLocationUsersDTO = I_PICK_LOCATION_USERS_MAPPER.pickLocationUsersEntityToPickLocationUsersDTO(pickLocationUsersEntity.get());
         return new ResponseEntity<>(pickLocationUsersDTO, HttpStatus.OK);
     }
