@@ -18,6 +18,9 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationEntity.setLongitude(pickLocationDTO.getLongitude());
         pickLocationEntity.setFlag(pickLocationDTO.getFlag());
         pickLocationEntity.setGis_url(pickLocationDTO.getGis_url());
+        pickLocationEntity.setHandasahName(pickLocationDTO.getHandasah_name());
+        pickLocationEntity.setTechnicalName(pickLocationDTO.getTechnical_name());
+        pickLocationEntity.setIsFinished(pickLocationDTO.getIs_finished());
 
         return pickLocationEntity;
     }
@@ -36,6 +39,9 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationDTO.setLongitude(pickLocationEntity.getLongitude());
         pickLocationDTO.setFlag(pickLocationEntity.getFlag());
         pickLocationDTO.setGis_url(pickLocationEntity.getGis_url());
+        pickLocationDTO.setHandasah_name(pickLocationEntity.getHandasahName());
+        pickLocationDTO.setTechnical_name(pickLocationEntity.getTechnicalName());
+        pickLocationDTO.setIs_finished(pickLocationEntity.getIsFinished());
 
         return pickLocationDTO;
 

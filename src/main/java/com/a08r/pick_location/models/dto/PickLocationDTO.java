@@ -1,5 +1,6 @@
 package com.a08r.pick_location.models.dto;
 
+import jakarta.persistence.Column;
 import lombok.*;
 
 @Setter
@@ -15,5 +16,8 @@ public class PickLocationDTO {
     private String longitude;
     private int flag;
     private String gis_url;
+    private String handasah_name;
+    private String technical_name;
+    private int is_finished;
 
 }

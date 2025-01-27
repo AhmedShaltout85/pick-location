@@ -28,5 +28,4 @@ public class PickLocationUsersEntity {
     private int technicalId; //technical-id= employee-number
 
 
-
 }
