@@ -29,5 +29,11 @@ public class PickLocationEntity {
     private int flag;
     @Column(name = "Gis_Url")
     private String gis_url;
+    @Column(name = "Handasah_Name")
+    private String handasahName;
+    @Column(name = "Technical_Name")
+    private String technicalName;
+    @Column(name = "Is_Finished")
+    private int isFinished;
 
 }

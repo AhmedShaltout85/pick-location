@@ -14,6 +14,10 @@ public class PickLocationUsersMapperImpl implements IPickLocationUsersMapper {
         pickLocationUsersEntity.setId(pickLocationUsersDTO.getId());
         pickLocationUsersEntity.setUserName(pickLocationUsersDTO.getUsername());
         pickLocationUsersEntity.setPassword(pickLocationUsersDTO.getPassword());
+        pickLocationUsersEntity.setRole(pickLocationUsersDTO.getRole());
+        pickLocationUsersEntity.setControlUnit(pickLocationUsersDTO.getControlUnit());
+        pickLocationUsersEntity.setTechnicalId(pickLocationUsersDTO.getTechnicalId());
+
 
 
         return pickLocationUsersEntity;
@@ -29,6 +33,9 @@ public class PickLocationUsersMapperImpl implements IPickLocationUsersMapper {
         pickLocationUsersDTO.setId(pickLocationUsersEntity.getId());
         pickLocationUsersDTO.setUsername(pickLocationUsersEntity.getUserName());
         pickLocationUsersDTO.setPassword(pickLocationUsersEntity.getPassword());
+        pickLocationUsersDTO.setRole(pickLocationUsersEntity.getRole());
+        pickLocationUsersDTO.setControlUnit(pickLocationUsersEntity.getControlUnit());
+        pickLocationUsersDTO.setTechnicalId(pickLocationUsersEntity.getTechnicalId());
 
         return pickLocationUsersDTO;
     }
