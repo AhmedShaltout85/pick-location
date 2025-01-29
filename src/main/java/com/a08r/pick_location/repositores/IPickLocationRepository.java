@@ -39,4 +39,5 @@ public interface IPickLocationRepository extends JpaRepository<PickLocationEntit
 
     List<PickLocationEntity> findByFlag(int flag);
     Optional<PickLocationEntity> findByAddress(String address);
+    Optional<PickLocationEntity> findByAddressAndFlag(String address, int flag);
 }
