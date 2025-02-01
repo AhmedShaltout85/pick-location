@@ -59,4 +59,10 @@ public class PickLocationController {
     public ResponseEntity<PickLocationDTO> findPickLocationByAddressAndFlag(@PathVariable String address, @PathVariable int flag){
         return this.iPickLocationServices.findPickLocationByAddressAndFlag(address, flag);
     }
+
+    //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @GetMapping(path = "/address/{address}")
+    public ResponseEntity<PickLocationDTO> findPickLocationByAddress(@PathVariable String address){
+        return this.iPickLocationServices.findPickLocationByAddress(address);
+    }
 }

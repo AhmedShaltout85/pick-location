@@ -114,8 +114,20 @@ public class PickLocationServicesImpl implements IPickLocationServices {
 
         Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddressAndFlag(address, flag);
         if (pickLocationEntity.isEmpty()) {
-            return new ResponseEntity<>(new PickLocationDTO(), HttpStatus.NOT_FOUND);
-//            throw new RecordNotFoundException("the item with address: " + address + " and flag: " + flag + " not found!...");
+//            return new ResponseEntity<>(new PickLocationDTO(), HttpStatus.NOT_FOUND);
+            throw new RecordNotFoundException("the item with address: " + address + " and flag: " + flag + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(exitingPickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<PickLocationDTO> findPickLocationByAddress(String address) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+//            return new ResponseEntity<>(new PickLocationDTO(), HttpStatus.NOT_FOUND);
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
         }
         PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(exitingPickLocationEntity);

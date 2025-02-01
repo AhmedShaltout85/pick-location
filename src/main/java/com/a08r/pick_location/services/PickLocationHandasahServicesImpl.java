@@ -31,18 +31,34 @@ public class PickLocationHandasahServicesImpl implements IPickLocationHandasahSe
         this.iPickLocationHandasahRepository = iPickLocationHandasahRepository;
     }
 
-    @Override
-    public ResponseEntity<List<PickLocationHandasahDTO>> getAllHandasah() {
+//    @Override
+//    public ResponseEntity<List<PickLocationHandasahDTO>> getAllHandasah() {
+//        List<PickLocationHandasahEntity> pickLocationHandasahEntities = iPickLocationHandasahRepository.findAll();
+//        List<PickLocationHandasahDTO> pickLocationHandasahDTOList = pickLocationHandasahEntities
+//                .stream()
+//                .map(I_PICK_LOCATION_HANDASAH_MAPPER::pickLocationHandasahEntityToPickLocationHandasahDTO)
+//                .collect(Collectors.toList());
+//        if (pickLocationHandasahDTOList.isEmpty()) {
+//            throw new RecordNotFoundException("Sorry, No DATA Found!...");
+//        }
+//        return new ResponseEntity<>(pickLocationHandasahDTOList, HttpStatus.OK);
+//    }
+
+    public ResponseEntity<List<String>> getAllHandasah() {
         List<PickLocationHandasahEntity> pickLocationHandasahEntities = iPickLocationHandasahRepository.findAll();
-        List<PickLocationHandasahDTO> pickLocationHandasahDTOList = pickLocationHandasahEntities
+
+        List<String> handasahNames = pickLocationHandasahEntities
                 .stream()
-                .map(I_PICK_LOCATION_HANDASAH_MAPPER::pickLocationHandasahEntityToPickLocationHandasahDTO)
+                .map(entity -> I_PICK_LOCATION_HANDASAH_MAPPER.pickLocationHandasahEntityToPickLocationHandasahDTO(entity).getHandasahName()) // Extract name
                 .collect(Collectors.toList());
-        if (pickLocationHandasahDTOList.isEmpty()) {
+
+        if (handasahNames.isEmpty()) {
             throw new RecordNotFoundException("Sorry, No DATA Found!...");
         }
-        return new ResponseEntity<>(pickLocationHandasahDTOList, HttpStatus.OK);
+
+        return new ResponseEntity<>(handasahNames, HttpStatus.OK);
     }
+
 
     @Override
     public ResponseEntity<PickLocationHandasahDTO> findHandasahById(Long id) {

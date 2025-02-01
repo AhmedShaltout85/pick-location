@@ -28,7 +28,7 @@ public class PickLocationHandasahController {
 
     //TODO://GET http://localhost:9999/pick-location/api/v1/handasah/all
     @GetMapping("/all")
-    public ResponseEntity<List<PickLocationHandasahDTO>> getAllHandasah(){
+    public ResponseEntity<List<String>> getAllHandasah(){
         return this.iPickLocationHandasahServices.getAllHandasah();
     }
 

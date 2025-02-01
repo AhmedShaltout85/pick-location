@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface IPickLocationHandasahServices {
 
-    ResponseEntity<List<PickLocationHandasahDTO>> getAllHandasah();
+    ResponseEntity<List<String>> getAllHandasah();
+//    ResponseEntity<List<PickLocationHandasahDTO>> getAllHandasah();
 
     ResponseEntity<PickLocationHandasahDTO> findHandasahById(Long id);
 
