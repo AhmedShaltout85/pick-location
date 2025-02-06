@@ -43,8 +43,8 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
     @Override
     public ResponseEntity<PickLocationUsersDTO> findUserByUsersId(Long id) {
         Optional<PickLocationUsersEntity> pickLocationUsersEntity = iPickLocationUsersRepository.findById(id);
-        if(pickLocationUsersEntity.isEmpty()){
-            throw new RecordNotFoundException("the item with id: "+ id +" not found!...");
+        if (pickLocationUsersEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with id: " + id + " not found!...");
 
         }
         PickLocationUsersDTO pickLocationUsersDTO = I_PICK_LOCATION_USERS_MAPPER.pickLocationUsersEntityToPickLocationUsersDTO(pickLocationUsersEntity.get());
@@ -70,6 +70,25 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
 //        }
         PickLocationUsersDTO pickLocationUsersDTO = I_PICK_LOCATION_USERS_MAPPER.pickLocationUsersEntityToPickLocationUsersDTO(pickLocationUsersEntity.get());
         return new ResponseEntity<>(pickLocationUsersDTO, HttpStatus.OK);
+    }
+
+
+    @Override
+    public ResponseEntity<List<String>> getUsersByRoleAndControlUnit(int role, String controlUnit) {
+        List<PickLocationUsersEntity> pickLocationUsersEntity = iPickLocationUsersRepository.findByRoleAndControlUnit(role, controlUnit);
+
+        List<String> usersNames = pickLocationUsersEntity
+                .stream()
+                .map(entity -> I_PICK_LOCATION_USERS_MAPPER.pickLocationUsersEntityToPickLocationUsersDTO(entity).getUsername()) // Extract name
+                .collect(Collectors.toList());
+
+        if (usersNames.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found!...");
+        }
+
+        return new ResponseEntity<>(usersNames, HttpStatus.OK);
+
+
     }
 
 

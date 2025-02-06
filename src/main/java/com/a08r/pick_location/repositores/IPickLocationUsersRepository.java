@@ -47,4 +47,6 @@ public interface IPickLocationUsersRepository extends JpaRepository<PickLocation
 
 
     Optional<PickLocationUsersEntity> findByUserNameAndPassword(String userName, String password);
+
+    List<PickLocationUsersEntity> findByRoleAndControlUnit(int role, String controlUnit);
 }
