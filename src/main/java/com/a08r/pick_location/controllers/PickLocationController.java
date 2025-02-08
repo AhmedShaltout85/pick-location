@@ -33,6 +33,12 @@ public class PickLocationController {
     public ResponseEntity<List<PickLocationDTO>> getPickLocationByFlag(@PathVariable int flag){
         return this.iPickLocationServices.getPickLocationByFlag(flag);
     }
+    //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/flag/1/is-finished/0
+    @GetMapping(path = "/flag/{flag}/is-finished/{is_finished}")
+    public ResponseEntity<List<PickLocationDTO>> getPickLocationByFlagAndIsFinished(@PathVariable int flag, @PathVariable int is_finished){
+        return this.iPickLocationServices.getPickLocationByFlagAndIsFinished(flag, is_finished);
+    }
+
 
     //TODO://POST http://localhost:9999/pick-location/api/v1/get-loc
     @PostMapping
@@ -52,6 +58,24 @@ public class PickLocationController {
     public ResponseEntity<PickLocationDTO> updatePickLocationByAddress(@PathVariable String address,
                                                                        @RequestBody PickLocationDTO pickLocationDTO){
         return this.iPickLocationServices.updatePickLocationByAddress(address, pickLocationDTO);
+    }
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/handasah/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @PutMapping(path = "/handasah/{address}")
+    public ResponseEntity<PickLocationDTO> updatePickLocationHandasah(@PathVariable String address,
+                                                                       @RequestBody PickLocationDTO pickLocationDTO){
+        return this.iPickLocationServices.updatePickLocationHandasah(address, pickLocationDTO);
+    }
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/technical/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @PutMapping(path = "/technical/{address}")
+    public ResponseEntity<PickLocationDTO> updatePickLocationTechnicalUser(@PathVariable String address,
+                                                                       @RequestBody PickLocationDTO pickLocationDTO){
+        return this.iPickLocationServices.updatePickLocationTechnicalUser(address, pickLocationDTO);
+    }
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/is-finished/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @PutMapping(path = "/is-finished/{address}")
+    public ResponseEntity<PickLocationDTO> updatePickLocationIsFinished(@PathVariable String address,
+                                                                       @RequestBody PickLocationDTO pickLocationDTO){
+        return this.iPickLocationServices.updatePickLocationIsFinished(address, pickLocationDTO);
     }
 
     //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/flag/0/address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340

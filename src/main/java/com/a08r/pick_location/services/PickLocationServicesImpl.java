@@ -43,6 +43,21 @@ public class PickLocationServicesImpl implements IPickLocationServices {
     }
 
     @Override
+    public ResponseEntity<List<PickLocationDTO>> getPickLocationByFlagAndIsFinished(int flag, int is_finished) {
+
+        List<PickLocationEntity> pickLocationEntities = iPickLocationRepository.findByFlagAndIsFinished(flag, is_finished);
+        List<PickLocationDTO> pickLocationDTOList = pickLocationEntities
+                .stream()
+                .map(I_PICK_LOCATION_MAPPER::pickLocationEntityToPickLocationDTO)
+                .collect(Collectors.toList());
+        if (pickLocationDTOList.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found!...");
+        }
+        return new ResponseEntity<>(pickLocationDTOList, HttpStatus.OK);
+
+    }
+
+    @Override
     public ResponseEntity<List<PickLocationDTO>> getPickLocationByFlag(int flag) {
 
         List<PickLocationEntity> pickLocationEntities = iPickLocationRepository.findByFlag(flag);
@@ -69,7 +84,7 @@ public class PickLocationServicesImpl implements IPickLocationServices {
 //            return ResponseEntity.status(HttpStatus.CONFLICT).build();
 //        }
         final PickLocationEntity pickLocationEntity = I_PICK_LOCATION_MAPPER.pickLocationDTOToPickLocationEntity(newPickLocationDTO);
-       final PickLocationEntity createPickLocationEntity = this.iPickLocationRepository.save(pickLocationEntity);
+        final PickLocationEntity createPickLocationEntity = this.iPickLocationRepository.save(pickLocationEntity);
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(createPickLocationEntity);
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.CREATED);
 
@@ -103,10 +118,56 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         exitingPickLocationEntity.setLongitude(newPickLocationDTO.getLongitude());
         exitingPickLocationEntity.setFlag(newPickLocationDTO.getFlag());
         exitingPickLocationEntity.setGis_url(newPickLocationDTO.getGis_url());
+//        exitingPickLocationEntity.setHandasahName(newPickLocationDTO.getHandasah_name());
+//        exitingPickLocationEntity.setTechnicalName(newPickLocationDTO.getTechnical_name());
+//        exitingPickLocationEntity.setIsFinished(newPickLocationDTO.getIs_finished());
         PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
 
+    }
+
+    //    updatePickLocationHandasahByAddress
+    @Override
+    public ResponseEntity<PickLocationDTO> updatePickLocationHandasah(String address, PickLocationDTO newPickLocationDTO) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        exitingPickLocationEntity.setHandasahName(newPickLocationDTO.getHandasah_name());
+        PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+
+    }
+
+    //     updatePickLocationTechnicalUserByAddress
+    @Override
+    public ResponseEntity<PickLocationDTO> updatePickLocationTechnicalUser(String address, PickLocationDTO newPickLocationDTO) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        exitingPickLocationEntity.setTechnicalName(newPickLocationDTO.getTechnical_name());
+        PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+    }
+
+    //    updatePickLocationIsFinishedByAddress
+    @Override
+    public ResponseEntity<PickLocationDTO> updatePickLocationIsFinished(String address, PickLocationDTO newPickLocationDTO) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        exitingPickLocationEntity.setIsFinished(newPickLocationDTO.getIs_finished());
+        PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
     }
 
     @Override
