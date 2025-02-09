@@ -22,5 +22,7 @@ public interface IPickLocationServices {
     ResponseEntity<PickLocationDTO> updatePickLocationIsFinished(String address, PickLocationDTO newPickLocationDTO);
     ResponseEntity<PickLocationDTO> findPickLocationByAddressAndFlag(String address, int flag);
     ResponseEntity<PickLocationDTO> findPickLocationByAddress(String address);
+    ResponseEntity<PickLocationDTO> findPickLocationByHandasahAndTechnicalAndIsFinished(String handasahName, String technionName, int isFinished);
+
 
 }

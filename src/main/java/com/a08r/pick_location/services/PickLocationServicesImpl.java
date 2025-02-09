@@ -195,5 +195,18 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<PickLocationDTO> findPickLocationByHandasahAndTechnicalAndIsFinished(String handasahName, String technionName, int isFinished) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByHandasahNameAndTechnicalNameAndIsFinished(handasahName, technionName, isFinished);
+        if (pickLocationEntity.isEmpty()) {
+//            return new ResponseEntity<>(new PickLocationDTO(), HttpStatus.NOT_FOUND);
+            throw new RecordNotFoundException("the item with Handasah_Name: " + handasahName + " and Technical_Name: " + technionName + " and Is_Finished: " + isFinished + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(exitingPickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+
+    }
+
 
 }
