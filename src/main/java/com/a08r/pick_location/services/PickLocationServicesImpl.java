@@ -118,9 +118,9 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         exitingPickLocationEntity.setLongitude(newPickLocationDTO.getLongitude());
         exitingPickLocationEntity.setFlag(newPickLocationDTO.getFlag());
         exitingPickLocationEntity.setGis_url(newPickLocationDTO.getGis_url());
-//        exitingPickLocationEntity.setHandasahName(newPickLocationDTO.getHandasah_name());
-//        exitingPickLocationEntity.setTechnicalName(newPickLocationDTO.getTechnical_name());
-//        exitingPickLocationEntity.setIsFinished(newPickLocationDTO.getIs_finished());
+        exitingPickLocationEntity.setHandasahName(newPickLocationDTO.getHandasah_name());
+        exitingPickLocationEntity.setTechnicalName(newPickLocationDTO.getTechnical_name());
+        exitingPickLocationEntity.setIsFinished(newPickLocationDTO.getIs_finished());
         PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
@@ -186,6 +186,18 @@ public class PickLocationServicesImpl implements IPickLocationServices {
     @Override
     public ResponseEntity<PickLocationDTO> findPickLocationByAddress(String address) {
         Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+//            return new ResponseEntity<>(new PickLocationDTO(), HttpStatus.NOT_FOUND);
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(exitingPickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<PickLocationDTO> findPickLocationByAddressAndHandasahName(String address, String handasahName) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddressAndHandasahName(address, handasahName);
         if (pickLocationEntity.isEmpty()) {
 //            return new ResponseEntity<>(new PickLocationDTO(), HttpStatus.NOT_FOUND);
             throw new RecordNotFoundException("the item with address: " + address + " not found!...");

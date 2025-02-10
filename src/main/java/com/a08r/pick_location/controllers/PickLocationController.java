@@ -89,6 +89,11 @@ public class PickLocationController {
     public ResponseEntity<PickLocationDTO> findPickLocationByAddress(@PathVariable String address){
         return this.iPickLocationServices.findPickLocationByAddress(address);
     }
+    //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340/handasah/handasah
+    @GetMapping(path = "/address/{address}/handasah/{handasahName}")
+    public ResponseEntity<PickLocationDTO> findPickLocationByAddressAndHandasahName(@PathVariable String address, @PathVariable String handasahName){
+        return this.iPickLocationServices.findPickLocationByAddressAndHandasahName(address, handasahName);
+    }
     //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/handasah/handasah/technical/user/is-finished/0
     @GetMapping(path = "/handasah/{handasahName}/technical/{technicalName}/is-finished/{isFinished}")
     public ResponseEntity<PickLocationDTO> findPickLocationByAddress(@PathVariable String handasahName,
