@@ -220,5 +220,18 @@ public class PickLocationServicesImpl implements IPickLocationServices {
 
     }
 
+    @Override
+    public ResponseEntity<List<PickLocationDTO>> findPickLocationByHandasahAndTechnical(String handasahName, String technionName) {
+        List<PickLocationEntity> pickLocationEntities = iPickLocationRepository.findByHandasahNameAndTechnicalName(handasahName, technionName);
+        List<PickLocationDTO> pickLocationDTOList = pickLocationEntities
+                .stream()
+                .map(I_PICK_LOCATION_MAPPER::pickLocationEntityToPickLocationDTO)
+                .collect(Collectors.toList());
+        if (pickLocationDTOList.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found!...");
+        }
+        return new ResponseEntity<>(pickLocationDTOList, HttpStatus.OK);
+    }
+
 
 }

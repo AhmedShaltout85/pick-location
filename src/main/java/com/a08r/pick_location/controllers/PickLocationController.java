@@ -101,4 +101,12 @@ public class PickLocationController {
                                                                      @PathVariable int isFinished){
         return this.iPickLocationServices.findPickLocationByHandasahAndTechnicalAndIsFinished(handasahName, technicalName, isFinished);
     }
+
+    //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/handasah/free/technical/free
+    @GetMapping(path = "/handasah/{handasahName}/technical/{technicalName}")
+    public ResponseEntity<List<PickLocationDTO>> findPickLocationByHandasahAndTechnical(@PathVariable String handasahName,
+                                                                     @PathVariable String technicalName){
+        return this.iPickLocationServices.findPickLocationByHandasahAndTechnical(handasahName, technicalName);
+    }
+    
 }
