@@ -20,6 +20,7 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationEntity.setHandasahName(pickLocationDTO.getHandasah_name());
         pickLocationEntity.setTechnicalName(pickLocationDTO.getTechnical_name());
         pickLocationEntity.setIsFinished(pickLocationDTO.getIs_finished());
+        pickLocationEntity.setIsApproved(pickLocationDTO.getIs_approved());
 
         return pickLocationEntity;
     }
@@ -41,6 +42,7 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationDTO.setHandasah_name(pickLocationEntity.getHandasahName());
         pickLocationDTO.setTechnical_name(pickLocationEntity.getTechnicalName());
         pickLocationDTO.setIs_finished(pickLocationEntity.getIsFinished());
+        pickLocationDTO.setIs_approved(pickLocationEntity.getIsApproved());
 
         return pickLocationDTO;
 

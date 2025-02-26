@@ -45,5 +45,7 @@ public interface IPickLocationRepository extends JpaRepository<PickLocationEntit
     Optional<PickLocationEntity> findByHandasahNameAndTechnicalNameAndIsFinished(String handasahName, String technicalName, int isFinished);
     List<PickLocationEntity> findByHandasahNameAndTechnicalName(String handasahName, String technicalName);
     List<PickLocationEntity> findByHandasahNameAndIsFinished(String handasahName, int isFinished);
+    Optional<PickLocationEntity> findByAddressAndTechnicalNameAndIsApproved(String address, String technicalName, int isApproved);
+
 
 }

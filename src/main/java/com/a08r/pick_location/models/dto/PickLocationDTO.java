@@ -19,5 +19,6 @@ public class PickLocationDTO {
     private String handasah_name;
     private String technical_name;
     private int is_finished;
+    private int is_approved;
 
 }

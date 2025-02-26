@@ -170,6 +170,21 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
     }
 
+    //    updatePickLocationIsApproved
+    @Override
+    public ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndTechnicalAndIsApproved(String address, PickLocationDTO newPickLocationDTO) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        exitingPickLocationEntity.setIsApproved(newPickLocationDTO.getIs_approved());
+        PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+
+    }
+
     @Override
     public ResponseEntity<PickLocationDTO> findPickLocationByAddressAndFlag(String address, int flag) {
 

@@ -35,5 +35,8 @@ public class PickLocationEntity {
     private String technicalName;
     @Column(name = "Is_Finished")
     private int isFinished;
+    @Column(name = "Is_Approved")
+    private int isApproved;
+
 
 }

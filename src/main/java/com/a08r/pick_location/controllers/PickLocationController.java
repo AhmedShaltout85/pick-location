@@ -77,6 +77,12 @@ public class PickLocationController {
                                                                        @RequestBody PickLocationDTO pickLocationDTO){
         return this.iPickLocationServices.updatePickLocationIsFinished(address, pickLocationDTO);
     }
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/is-approved/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @PutMapping(path = "/is-approved/{address}")
+    public ResponseEntity<PickLocationDTO> updatePickLocationIsApproved(@PathVariable String address,
+                                                                       @RequestBody PickLocationDTO pickLocationDTO){
+        return this.iPickLocationServices.updatePickLocationByAddressAndTechnicalAndIsApproved(address, pickLocationDTO);
+    }
 
     //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/flag/0/address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
     @GetMapping(path = "/flag/{flag}/address/{address}")
@@ -114,5 +120,6 @@ public class PickLocationController {
                                                                      @PathVariable int isFinished){
         return this.iPickLocationServices.findPickLocationByHandasahAndIsFinished(handasahName, isFinished);
     }
-    
+
+
 }
