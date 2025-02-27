@@ -7,17 +7,15 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PickLocationDTO {
+public class TrackingLocationDTO {
 
     private Long id;
     private String address;
     private String latitude;
     private String longitude;
-    private int flag;
-    private String gis_url;
-    private String handasah_name;
-    private String technical_name;
-    private int is_finished;
-    private int is_approved;
-
+    private String technicalName;
+    private String startLatitude;
+    private String startLongitude;
+    private String currentLatitude;
+    private String currentLongitude;
 }
