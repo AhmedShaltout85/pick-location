@@ -61,4 +61,16 @@ public class TrackingLocationServicesImpl implements ITrackingLocationServices{
         TrackingLocationDTO trackingLocationDTO = I_TRACKING_LOCATION_MAPPER.trackingLocationEntityToTrackingLocationDTO(updateTrackingLocationEntity);
         return new ResponseEntity<>(trackingLocationDTO, HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<TrackingLocationDTO> getTrackingLocationByAddressAndTechnicalName(String address, String technicalName) {
+        Optional<TrackingLocationEntity> trackingLocationEntity = iTracingLocationRepository.findByAddressAndTechnicalName(address, technicalName);
+        if (trackingLocationEntity.isEmpty()) {
+//            return new ResponseEntity<>(new PickLocationDTO(), HttpStatus.NOT_FOUND);
+            throw new RecordNotFoundException("the item with address: " + address + " and TechnicalName: " + technicalName + " not found!...");
+        }
+        TrackingLocationEntity exitingTrackLocationEntity = trackingLocationEntity.get();
+        TrackingLocationDTO trackingLocationDTO = I_TRACKING_LOCATION_MAPPER.trackingLocationEntityToTrackingLocationDTO(exitingTrackLocationEntity);
+        return new ResponseEntity<>(trackingLocationDTO, HttpStatus.OK);
+    }
 }

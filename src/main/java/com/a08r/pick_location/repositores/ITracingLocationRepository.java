@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ITracingLocationRepository extends JpaRepository<TrackingLocationEntity, Long> {
     Optional<TrackingLocationEntity> findByAddress(String address);
+    Optional<TrackingLocationEntity> findByAddressAndTechnicalName(String address, String technicalName);
+
 }

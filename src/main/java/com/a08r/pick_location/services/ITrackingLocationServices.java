@@ -10,4 +10,6 @@ public interface ITrackingLocationServices {
     ResponseEntity<TrackingLocationDTO> createTrackingLocation(TrackingLocationDTO newTrackingLocationDTO);
 
     ResponseEntity<TrackingLocationDTO> updateStartLocation(String address, TrackingLocationDTO newTrackingLocationDTO);
+    ResponseEntity<TrackingLocationDTO> getTrackingLocationByAddressAndTechnicalName(String address, String technicalName);
+
 }
