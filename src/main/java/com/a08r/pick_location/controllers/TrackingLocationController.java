@@ -42,7 +42,7 @@ public class TrackingLocationController {
         return this.iTrackingLocationServices.updateStartLocation(address, trackingLocationDTO);
     }
 
-    //TODO://GET http://localhost:9999/pick-location/api/v1/track-location/address/address/tech-name/tech
+    //TODO://GET http://localhost:9999/pick-location/api/v1/track-location/address/2second_address/tech-name/user
     @GetMapping(path = "/address/{address}/tech-name/{tech}")
     public ResponseEntity<TrackingLocationDTO> findTrackingLocationByAddressAndTechName(@PathVariable String address, @PathVariable String tech){
         return this.iTrackingLocationServices.getTrackingLocationByAddressAndTechnicalName(address, tech);
