@@ -1,9 +1,7 @@
 package com.a08r.pick_location.services;
 
 import com.a08r.pick_location.errors.RecordNotFoundException;
-import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.TrackingLocationDTO;
-import com.a08r.pick_location.models.location.PickLocationEntity;
 import com.a08r.pick_location.models.location.TrackingLocationEntity;
 import com.a08r.pick_location.models.mapper.ITrackingLocationMapper;
 import com.a08r.pick_location.models.mapper.TrackingLocationMapperImpl;
@@ -71,6 +69,35 @@ public class TrackingLocationServicesImpl implements ITrackingLocationServices{
         }
         TrackingLocationEntity exitingTrackLocationEntity = trackingLocationEntity.get();
         TrackingLocationDTO trackingLocationDTO = I_TRACKING_LOCATION_MAPPER.trackingLocationEntityToTrackingLocationDTO(exitingTrackLocationEntity);
+        return new ResponseEntity<>(trackingLocationDTO, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<TrackingLocationDTO> findTrackingLocationByAddress(String address) {
+        Optional<TrackingLocationEntity> trackingLocationEntity = iTracingLocationRepository.findByAddress(address);
+        if (trackingLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        TrackingLocationEntity exitingTrackingLocationEntity = trackingLocationEntity.get();
+        TrackingLocationDTO trackingLocationDTO = I_TRACKING_LOCATION_MAPPER.trackingLocationEntityToTrackingLocationDTO(exitingTrackingLocationEntity);
+        return new ResponseEntity<>(trackingLocationDTO, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<TrackingLocationDTO> updateTrackingLocationByAddress(String address, TrackingLocationDTO newTrackingLocationDTO) {
+        Optional<TrackingLocationEntity> trackingLocationEntity = iTracingLocationRepository.findByAddress(address);
+        if (trackingLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        TrackingLocationEntity exitingTrackingLocationEntity = trackingLocationEntity.get();
+        exitingTrackingLocationEntity.setLatitude(newTrackingLocationDTO.getLatitude());
+        exitingTrackingLocationEntity.setLongitude(newTrackingLocationDTO.getLongitude());
+        exitingTrackingLocationEntity.setStartLatitude(newTrackingLocationDTO.getStartLatitude());
+        exitingTrackingLocationEntity.setStartLatitude(newTrackingLocationDTO.getStartLatitude());
+        exitingTrackingLocationEntity.setCurrentLongitude(newTrackingLocationDTO.getCurrentLongitude());
+        exitingTrackingLocationEntity.setCurrentLongitude(newTrackingLocationDTO.getCurrentLongitude());
+        TrackingLocationEntity updateTrackingLocationEntity = this.iTracingLocationRepository.save(exitingTrackingLocationEntity);
+        TrackingLocationDTO trackingLocationDTO = I_TRACKING_LOCATION_MAPPER.trackingLocationEntityToTrackingLocationDTO(updateTrackingLocationEntity);
         return new ResponseEntity<>(trackingLocationDTO, HttpStatus.OK);
     }
 }

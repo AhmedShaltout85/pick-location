@@ -48,4 +48,17 @@ public class TrackingLocationController {
         return this.iTrackingLocationServices.getTrackingLocationByAddressAndTechnicalName(address, tech);
     }
 
+    //TODO://GET http://localhost:9999/pick-location/api/v1/track-location/get-address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @GetMapping(path = "/get-address/{address}")
+    public ResponseEntity<TrackingLocationDTO> findTrackingLocationByAddress(@PathVariable String address){
+        return this.iTrackingLocationServices.findTrackingLocationByAddress(address);
+    }
+
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/track-location/put-address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @PutMapping(path = "/put-address/{address}")
+    public ResponseEntity<TrackingLocationDTO> updateTrackingLocationALLDataByAddress(@PathVariable String address,
+                                                                       @RequestBody TrackingLocationDTO trackingLocationDTO){
+        return this.iTrackingLocationServices.updateTrackingLocationByAddress(address, trackingLocationDTO);
+    }
+
 }
