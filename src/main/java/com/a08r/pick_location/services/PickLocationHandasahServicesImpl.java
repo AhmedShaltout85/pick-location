@@ -81,5 +81,16 @@ public class PickLocationHandasahServicesImpl implements IPickLocationHandasahSe
 
     }
 
+    @Override
+    public ResponseEntity<PickLocationHandasahDTO> getStoreName(String handasahName) {
+        Optional<PickLocationHandasahEntity> pickLocationHandasahEntity = iPickLocationHandasahRepository.findByHandasahName(handasahName);
+        if (pickLocationHandasahEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with Handasah_Name: " + handasahName + " not found!...");
+        }
+        PickLocationHandasahDTO pickLocationHandasahDTO = I_PICK_LOCATION_HANDASAH_MAPPER.pickLocationHandasahEntityToPickLocationHandasahDTO(pickLocationHandasahEntity.get());
+        return new ResponseEntity<>(pickLocationHandasahDTO, HttpStatus.OK);
+
+    }
+
 
 }

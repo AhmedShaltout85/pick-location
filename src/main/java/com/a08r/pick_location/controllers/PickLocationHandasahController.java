@@ -45,5 +45,13 @@ public class PickLocationHandasahController {
     public ResponseEntity<PickLocationHandasahDTO> createHandasah(@RequestBody PickLocationHandasahDTO addPickLocationHandasahDto){
         return this.iPickLocationHandasahServices.createHandasah(addPickLocationHandasahDto);
     }
+    //TODO://GET http://localhost:9999/pick-location/api/v1/handasah/handasah-name/{handasahName}
+    //TODO://GET http://localhost:9999/pick-location/api/v1/handasah/handasah-name/handasah
+    @GetMapping(path ="/handasah-name/{handasahName}" )
+    public ResponseEntity<PickLocationHandasahDTO> findStoreNameByHandasahName(@PathVariable String handasahName){
+        return this.iPickLocationHandasahServices.getStoreName(handasahName);
+
+    }
+
 
 }

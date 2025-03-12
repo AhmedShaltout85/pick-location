@@ -39,4 +39,5 @@ public interface IPickLocationHandasahRepository extends JpaRepository<PickLocat
 
 //    List<PickLocationEntity> findByFlag(int flag);
 //    Optional<PickLocationEntity> findByAddress(String address);
+    Optional<PickLocationHandasahEntity> findByHandasahName(String handasahName);
 }

@@ -14,6 +14,9 @@ public interface IPickLocationHandasahServices {
     ResponseEntity<PickLocationHandasahDTO> findHandasahById(Long id);
 
     ResponseEntity<PickLocationHandasahDTO> createHandasah(PickLocationHandasahDTO newPickLocationHandasahDTO);
+    ResponseEntity<PickLocationHandasahDTO> getStoreName(String handasahName);
+
+
 
 
 
