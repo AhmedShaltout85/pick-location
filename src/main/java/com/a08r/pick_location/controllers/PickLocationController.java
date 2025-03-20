@@ -59,6 +59,7 @@ public class PickLocationController {
                                                                        @RequestBody PickLocationDTO pickLocationDTO){
         return this.iPickLocationServices.updatePickLocationByAddress(address, pickLocationDTO);
     }
+
     //TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/handasah/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
     @PutMapping(path = "/handasah/{address}")
     public ResponseEntity<PickLocationDTO> updatePickLocationHandasah(@PathVariable String address,
@@ -83,8 +84,21 @@ public class PickLocationController {
                                                                        @RequestBody PickLocationDTO pickLocationDTO){
         return this.iPickLocationServices.updatePickLocationByAddressAndTechnicalAndIsApproved(address, pickLocationDTO);
     }
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/add-details/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    @PutMapping(path = "/add-details/{address}")
+    public ResponseEntity<PickLocationDTO> updatePickLocationCallerNameAndPoneAndBrokenType(@PathVariable String address,
+                                                                       @RequestBody PickLocationDTO pickLocationDTO){
+        return this.iPickLocationServices.updatePickLocationByAddressAndCallerNameAndNumberAndBrokenType(address, pickLocationDTO);
+    }
 
-    //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/flag/0/address/43 الراشدين، سيدي بشر قبلي، اول المنتزه، محافظة الإسكندرية 5516340
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/get-loc/update-video-call/61 طريق الحرية الاسكندرية
+    @PutMapping(path = "/update-video-call/{address}")
+    public ResponseEntity<PickLocationDTO> updatePickLocationVideoCall(@PathVariable String address,
+                                                                       @RequestBody PickLocationDTO pickLocationDTO){
+        return this.iPickLocationServices.updatePickLocationByAddressAndVideoCall(address, pickLocationDTO);
+    }
+
+    //TODO://GET http://localhost:9999/pick-location/api/v1/get-loc/flag/0/address/61 طريق الحرية الاسكندرية
     @GetMapping(path = "/flag/{flag}/address/{address}")
     public ResponseEntity<PickLocationDTO> findPickLocationByAddressAndFlag(@PathVariable String address, @PathVariable int flag){
         return this.iPickLocationServices.findPickLocationByAddressAndFlag(address, flag);

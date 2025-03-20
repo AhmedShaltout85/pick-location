@@ -38,5 +38,15 @@ public class PickLocationEntity {
     @Column(name = "Is_Approved")
     private int isApproved;
 
+    @Column(name = "Caller_Name")
+    private String callerName;
+    @Column(name = "Broken_Type")
+    private String brokenType;
+   @Column(name = "Caller_Number")
+    private String callerNumber;
+   @Column(name = "Video_Call")
+    private int videoCall;
+
+
 
 }

@@ -185,6 +185,36 @@ public class PickLocationServicesImpl implements IPickLocationServices {
 
     }
 
+    //update Location By Caller name, number, broken-type
+    @Override
+    public ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndCallerNameAndNumberAndBrokenType(String address, PickLocationDTO newPickLocationDTO) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        exitingPickLocationEntity.setCallerName(newPickLocationDTO.getCaller_name());
+        exitingPickLocationEntity.setCallerNumber(newPickLocationDTO.getCaller_phone());
+        exitingPickLocationEntity.setBrokenType(newPickLocationDTO.getBroker_type());
+        PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+    }
+
+    //update Location By Video Call
+    @Override
+    public ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndVideoCall(String address, PickLocationDTO newPickLocationDTO) {
+        Optional<PickLocationEntity> pickLocationEntity = iPickLocationRepository.findByAddress(address);
+        if (pickLocationEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        PickLocationEntity exitingPickLocationEntity = pickLocationEntity.get();
+        exitingPickLocationEntity.setVideoCall(newPickLocationDTO.getVideo_call());
+        PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
+        PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
+        return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
+    }
+
     @Override
     public ResponseEntity<PickLocationDTO> findPickLocationByAddressAndFlag(String address, int flag) {
 

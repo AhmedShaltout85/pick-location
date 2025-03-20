@@ -21,6 +21,10 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationEntity.setTechnicalName(pickLocationDTO.getTechnical_name());
         pickLocationEntity.setIsFinished(pickLocationDTO.getIs_finished());
         pickLocationEntity.setIsApproved(pickLocationDTO.getIs_approved());
+        pickLocationEntity.setCallerName(pickLocationDTO.getCaller_name());
+        pickLocationEntity.setBrokenType(pickLocationDTO.getBroker_type());
+        pickLocationEntity.setCallerNumber(pickLocationDTO.getCaller_phone());
+        pickLocationEntity.setVideoCall(pickLocationDTO.getVideo_call());
 
         return pickLocationEntity;
     }
@@ -43,6 +47,10 @@ public class PickLocationMapperImpl implements IPickLocationMapper {
         pickLocationDTO.setTechnical_name(pickLocationEntity.getTechnicalName());
         pickLocationDTO.setIs_finished(pickLocationEntity.getIsFinished());
         pickLocationDTO.setIs_approved(pickLocationEntity.getIsApproved());
+        pickLocationDTO.setCaller_name(pickLocationEntity.getCallerName());
+        pickLocationDTO.setBroker_type(pickLocationEntity.getBrokenType());
+        pickLocationDTO.setCaller_phone(pickLocationEntity.getCallerNumber());
+        pickLocationDTO.setVideo_call(pickLocationEntity.getVideoCall());
 
         return pickLocationDTO;
 

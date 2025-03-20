@@ -27,6 +27,8 @@ public interface IPickLocationServices {
     ResponseEntity<List<PickLocationDTO>> findPickLocationByHandasahAndTechnical(String handasahName, String technionName);
     ResponseEntity<List<PickLocationDTO>> findPickLocationByHandasahAndIsFinished(String handasahName, int isFinished);
     ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndTechnicalAndIsApproved(String address, PickLocationDTO newPickLocationDTO);
+    ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndCallerNameAndNumberAndBrokenType(String address, PickLocationDTO newPickLocationDTO);
+    ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndVideoCall(String address, PickLocationDTO newPickLocationDTO);
 
 
 }

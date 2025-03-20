@@ -19,5 +19,9 @@ public class PickLocationDTO {
     private String technical_name;
     private int is_finished;
     private int is_approved;
+    private String caller_name;
+    private String caller_phone;
+    private String broker_type;
+    private int video_call;
 
 }
