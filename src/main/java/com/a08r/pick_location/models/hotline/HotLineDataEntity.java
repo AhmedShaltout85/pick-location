@@ -17,7 +17,7 @@ public class HotLineDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long Id;
     @Column(name = "customer_id")
     private int CustomerID;
@@ -43,7 +43,7 @@ public class HotLineDataEntity {
     private String Name;
     @Column(name = "subscribe_no")
     private String SubscribeNo;
-    @Column(name = "area_number")
+    @Column(name = "area_no")
     private String AreaNo;
     @Column(name = "email")
     private String Email;
