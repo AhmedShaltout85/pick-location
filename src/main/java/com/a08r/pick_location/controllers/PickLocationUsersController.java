@@ -44,7 +44,7 @@ public class PickLocationUsersController {
 
     }
 
-    //TODO://POST http://localhost:9999/pick-location/api/v1/users
+    //TODO://POST http://localhost:9999/pick-location/api/v1/users/create-user
     @PostMapping("/create-user")
     public ResponseEntity<PickLocationUsersDTO> createUser(@RequestBody PickLocationUsersDTO addPickLocationUserDto) {
         return this.iPickLocationUsersServices.createUser(addPickLocationUserDto);
