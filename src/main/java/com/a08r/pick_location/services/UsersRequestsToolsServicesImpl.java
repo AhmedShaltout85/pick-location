@@ -1,8 +1,10 @@
 package com.a08r.pick_location.services;
 
 import com.a08r.pick_location.errors.RecordNotFoundException;
+import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.UsersRequestsToolsDTO;
 import com.a08r.pick_location.models.handasatTools.UsersRequestsToolsEntity;
+import com.a08r.pick_location.models.location.PickLocationEntity;
 import com.a08r.pick_location.models.mapper.IUsersRequestsToolsMapper;
 import com.a08r.pick_location.models.mapper.UsersRequestsToolsMapperImpl;
 import com.a08r.pick_location.repositores.IUsersRequestsToolsRepository;
@@ -67,9 +69,33 @@ public class UsersRequestsToolsServicesImpl implements IUsersRequestsToolsServic
         return new ResponseEntity<>(usersRequestsToolsDTO, HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity<UsersRequestsToolsDTO> updateRequestToolsByAddress(String address, UsersRequestsToolsDTO newUsersRequestsToolsDTO) {
 
+        Optional<UsersRequestsToolsEntity> usersRequestsToolsEntity = iUsersRequestsToolsRepository.findByAddress(address);
+        if (usersRequestsToolsEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with address: " + address + " not found!...");
+        }
+        UsersRequestsToolsEntity exitingUsersRequestsToolsEntity = usersRequestsToolsEntity.get();
+        exitingUsersRequestsToolsEntity.setToolQty(newUsersRequestsToolsDTO.getToolQty());
+        exitingUsersRequestsToolsEntity.setIsApproved(newUsersRequestsToolsDTO.getIsApproved());
+//      it probably to need to add other items to update full request not previous items only
+        UsersRequestsToolsEntity updateUsersRequestsToolsEntity = this.iUsersRequestsToolsRepository.save(exitingUsersRequestsToolsEntity);
+        UsersRequestsToolsDTO usersRequestsToolsDTO = I_USERS_REQUESTS_TOOLS_MAPPER.usersRequestsToolsEntityToUsersRequestsToolsDTO(updateUsersRequestsToolsEntity);
+        return new ResponseEntity<>(usersRequestsToolsDTO, HttpStatus.OK);
+    }
 
+    @Override
+    public ResponseEntity<UsersRequestsToolsDTO> findByHandasahNameAndAddressAndRequestStatus(String handasahName, int requestStatus, String address) {
+        Optional<UsersRequestsToolsEntity> usersRequestsToolsEntity = iUsersRequestsToolsRepository.findByHandasahNameAndRequestStatusAndAddress(handasahName, requestStatus, address);
 
+        if (usersRequestsToolsEntity.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found!...");
+        }
+        UsersRequestsToolsEntity exitingUsersRequestsToolsEntity = usersRequestsToolsEntity.get();
+        UsersRequestsToolsDTO usersRequestsToolsDTO = I_USERS_REQUESTS_TOOLS_MAPPER.usersRequestsToolsEntityToUsersRequestsToolsDTO(exitingUsersRequestsToolsEntity);
+        return new ResponseEntity<>(usersRequestsToolsDTO, HttpStatus.OK);
+    }
 
 
 }

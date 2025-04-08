@@ -1,9 +1,7 @@
 package com.a08r.pick_location.controllers;
 
-import com.a08r.pick_location.models.dto.HandasatToolsDTO;
 import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.UsersRequestsToolsDTO;
-import com.a08r.pick_location.services.IHandasatToolsServices;
 import com.a08r.pick_location.services.IUsersRequestsToolsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +41,22 @@ public class UsersRequestsToolsController {
     //TODO://PUT http://localhost:9999/pick-location/api/v1/users-requests-tools/id/1
     @PutMapping(path = "/id/{id}")
     public ResponseEntity<UsersRequestsToolsDTO> updateRequestTools(@PathVariable Long id,
-                                                         @RequestBody UsersRequestsToolsDTO usersRequestsToolsDto){
+                                                                    @RequestBody UsersRequestsToolsDTO usersRequestsToolsDto) {
         return this.iUsersRequestsToolsServices.updateRequestTools(id, usersRequestsToolsDto);
+    }
+
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/users-requests-tools/address/61 طريق الحرية الاسكندرية
+    @PutMapping(path = "/address/{address}")
+    public ResponseEntity<UsersRequestsToolsDTO> updateUserRequestByAddress(@PathVariable String address,
+                                                                            @RequestBody UsersRequestsToolsDTO usersRequestsToolsDTO) {
+        return this.iUsersRequestsToolsServices.updateRequestToolsByAddress(address, usersRequestsToolsDTO);
+    }
+
+    //TODO://GET http://localhost:9999/pick-location/api/v1/users-requests-tools/handasah/هندسة فرع الرمل/address/فمنج امام قسم الرمل اول/requestStatus/1
+    @GetMapping(path = "/handasah/{handasahName}/address/{address}/requestStatus/{requestStatus}")
+    public ResponseEntity<UsersRequestsToolsDTO> findByHandasahNameAndAddressAndRequestStatus(@PathVariable String handasahName,
+                                                                                                    @PathVariable String address,
+                                                                                                    @PathVariable int requestStatus) {
+        return this.iUsersRequestsToolsServices.findByHandasahNameAndAddressAndRequestStatus(handasahName, requestStatus, address);
     }
 }
