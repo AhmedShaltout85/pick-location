@@ -18,7 +18,7 @@ public class HandasatToolsMapperImpl implements IHandasatToolsMapper {
     }
 
     @Override
-    public HandasatToolsDTO handasatToolsEntityToPickLocationDTO(HandasatToolsEntity handasatToolsEntity) {
+    public HandasatToolsDTO handasatToolsEntityToHandasatToolsDTO(HandasatToolsEntity handasatToolsEntity) {
         if (handasatToolsEntity == null) {
             throw new NullPointerException("pickLocationEntity should not be null");
         }

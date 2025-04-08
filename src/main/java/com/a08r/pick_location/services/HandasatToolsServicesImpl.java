@@ -35,7 +35,7 @@ public class HandasatToolsServicesImpl implements IHandasatToolsServices {
         List<HandasatToolsEntity> handasatToolsEntities = iHandasatToolsRepository.findAll();
         List<HandasatToolsDTO> handasatToolsDTOS = handasatToolsEntities
                 .stream()
-                .map(I_HANDASAT_TOOLS_MAPPER::handasatToolsEntityToPickLocationDTO)
+                .map(I_HANDASAT_TOOLS_MAPPER::handasatToolsEntityToHandasatToolsDTO)
                 .collect(Collectors.toList());
         if (handasatToolsDTOS.isEmpty()) {
             throw new RecordNotFoundException("Sorry, No DATA Found!...");
@@ -47,7 +47,7 @@ public class HandasatToolsServicesImpl implements IHandasatToolsServices {
     public ResponseEntity<HandasatToolsDTO> createHandasatTools(HandasatToolsDTO newHandasatToolsDTO) {
         final HandasatToolsEntity handasatToolsEntity = I_HANDASAT_TOOLS_MAPPER.handasatToolsDTOToHandasatToolsEntity(newHandasatToolsDTO);
         final HandasatToolsEntity createHandasatToolsEntity = this.iHandasatToolsRepository.save(handasatToolsEntity);
-        HandasatToolsDTO handasatToolsDTO = I_HANDASAT_TOOLS_MAPPER.handasatToolsEntityToPickLocationDTO(createHandasatToolsEntity);
+        HandasatToolsDTO handasatToolsDTO = I_HANDASAT_TOOLS_MAPPER.handasatToolsEntityToHandasatToolsDTO(createHandasatToolsEntity);
         return new ResponseEntity<>(handasatToolsDTO, HttpStatus.CREATED);
 
     }
