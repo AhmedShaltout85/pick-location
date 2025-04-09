@@ -9,6 +9,7 @@ import java.util.List;
 public interface IHandasatToolsServices {
 
     ResponseEntity<List<HandasatToolsDTO>> getAllHandasatTools();
+    ResponseEntity<List<String>> getAllHandasatToolsByHandasahName(String handasahName);
 
     ResponseEntity<HandasatToolsDTO> createHandasatTools(HandasatToolsDTO newHandasatToolsDTO);
 }

@@ -16,7 +16,7 @@ public class HandasatToolsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "handasah_name")
-    private String handasah_name;
+    private String handasahName;
     @Column(name = "tool_name")
     private String toolName;
     @Column(name = "tool_qty")

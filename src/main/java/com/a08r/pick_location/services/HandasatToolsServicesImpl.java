@@ -44,6 +44,23 @@ public class HandasatToolsServicesImpl implements IHandasatToolsServices {
     }
 
     @Override
+    public ResponseEntity<List<String>> getAllHandasatToolsByHandasahName(String handasahName) {
+        List<HandasatToolsEntity> handasatToolsEntities = iHandasatToolsRepository.findByHandasahName(handasahName);
+
+        List<String> toolsNames = handasatToolsEntities
+                .stream()
+                .map(entity -> I_HANDASAT_TOOLS_MAPPER.handasatToolsEntityToHandasatToolsDTO(entity).getToolName()) // Extract name
+                .collect(Collectors.toList());
+
+        if (toolsNames.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found!...");
+        }
+
+        return new ResponseEntity<>(toolsNames, HttpStatus.OK);
+
+    }
+
+    @Override
     public ResponseEntity<HandasatToolsDTO> createHandasatTools(HandasatToolsDTO newHandasatToolsDTO) {
         final HandasatToolsEntity handasatToolsEntity = I_HANDASAT_TOOLS_MAPPER.handasatToolsDTOToHandasatToolsEntity(newHandasatToolsDTO);
         final HandasatToolsEntity createHandasatToolsEntity = this.iHandasatToolsRepository.save(handasatToolsEntity);

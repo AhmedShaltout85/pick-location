@@ -11,7 +11,7 @@ public class HandasatToolsMapperImpl implements IHandasatToolsMapper {
             throw new NullPointerException("pickLocationDTO should not be null");
         }
         HandasatToolsEntity handasatToolsEntity = new HandasatToolsEntity();
-        handasatToolsEntity.setHandasah_name(handasatToolsDTO.getHandasahName());
+        handasatToolsEntity.setHandasahName(handasatToolsDTO.getHandasahName());
         handasatToolsEntity.setToolName(handasatToolsDTO.getToolName());
         handasatToolsEntity.setToolQty(handasatToolsDTO.getToolQty());
         return handasatToolsEntity;
@@ -23,7 +23,7 @@ public class HandasatToolsMapperImpl implements IHandasatToolsMapper {
             throw new NullPointerException("pickLocationEntity should not be null");
         }
         HandasatToolsDTO handasatToolsDTO = new HandasatToolsDTO();
-        handasatToolsDTO.setHandasahName(handasatToolsEntity.getHandasah_name());
+        handasatToolsDTO.setHandasahName(handasatToolsEntity.getHandasahName());
         handasatToolsDTO.setToolName(handasatToolsEntity.getToolName());
         handasatToolsDTO.setToolQty(handasatToolsEntity.getToolQty());
         return handasatToolsDTO;

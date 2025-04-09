@@ -31,6 +31,11 @@ public class HandasatToolsController {
     public ResponseEntity<List<HandasatToolsDTO>> getAllHandasatTools() {
         return this.iHandasatToolsServices.getAllHandasatTools();
     }
+  //TODO://GET http://localhost:9999/pick-location/api/v1/handasat-tools/all/{handasahName}
+    @GetMapping("/all/{handasahName}")
+    public ResponseEntity<List<String>> getAllHandasatToolsByHandasahName(@PathVariable String handasahName) {
+        return this.iHandasatToolsServices.getAllHandasatToolsByHandasahName(handasahName);
+    }
 
 
 
