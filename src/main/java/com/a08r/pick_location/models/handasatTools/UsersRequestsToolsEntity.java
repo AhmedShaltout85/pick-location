@@ -23,10 +23,15 @@ public class UsersRequestsToolsEntity {
     private String toolName;
     @Column(name = "tool_qty")
     private int toolQty;
+    @Column(name = "tech_name")
     private String techName;
+    @Column(name = "date")
     private Date date;
+    @Column(name = "request_status")
     private int requestStatus;
+    @Column(name = "is_approved")
     private int isApproved;
+    @Column(name = "address")
     private String address;
 
 }
