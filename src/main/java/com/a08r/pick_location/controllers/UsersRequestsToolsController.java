@@ -54,9 +54,16 @@ public class UsersRequestsToolsController {
 
     //TODO://GET http://localhost:9999/pick-location/api/v1/users-requests-tools/handasah/هندسة فرع الرمل/address/فمنج امام قسم الرمل اول/requestStatus/1
     @GetMapping(path = "/handasah/{handasahName}/address/{address}/requestStatus/{requestStatus}")
-    public ResponseEntity<UsersRequestsToolsDTO> findByHandasahNameAndAddressAndRequestStatus(@PathVariable String handasahName,
+    public ResponseEntity<List<UsersRequestsToolsDTO>> findByHandasahNameAndAddressAndRequestStatus(@PathVariable String handasahName,
                                                                                                     @PathVariable String address,
                                                                                                     @PathVariable int requestStatus) {
         return this.iUsersRequestsToolsServices.findByHandasahNameAndAddressAndRequestStatus(handasahName, requestStatus, address);
+    }
+    //TODO://GET http://localhost:9999/pick-location/api/v1/users-requests-tools/handasah/هندسة فرع الرمل/address/فمنج امام قسم الرمل اول/tech-name/user1
+    @GetMapping(path = "/handasah/{handasahName}/address/{address}/tech-name/{techName}")
+    public ResponseEntity<List<UsersRequestsToolsDTO>> findByHandasahNameAndAddressAndTechName(@PathVariable String handasahName,
+                                                                                                    @PathVariable String address,
+                                                                                                    @PathVariable String techName) {
+        return this.iUsersRequestsToolsServices.findByHandasahNameAndAddressAndTechName(handasahName, techName, address);
     }
 }

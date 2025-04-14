@@ -14,6 +14,7 @@ public class HotLineDTO {
     private String reporterName;
     private String street;
     private String mainStreet;
+    private String caseType;
     private String x;
     private String y;
 }

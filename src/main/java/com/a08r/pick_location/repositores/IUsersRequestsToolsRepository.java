@@ -12,5 +12,6 @@ public interface IUsersRequestsToolsRepository extends JpaRepository<UsersReques
     Optional<UsersRequestsToolsEntity> findByHandasahName(String handasahName);
     Optional<UsersRequestsToolsEntity> findByAddress(String address);
     Optional<UsersRequestsToolsEntity> findByHandasahNameAndRequestStatus(String handasahName, int requestStatus);
-    Optional<UsersRequestsToolsEntity> findByHandasahNameAndRequestStatusAndAddress(String handasahName, int requestStatus, String address);
+    List<UsersRequestsToolsEntity> findByHandasahNameAndRequestStatusAndAddress(String handasahName, int requestStatus, String address);
+    List<UsersRequestsToolsEntity> findByHandasahNameAndTechNameAndAddress(String handasahName, String  techName, String address);
 }

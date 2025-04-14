@@ -86,15 +86,32 @@ public class UsersRequestsToolsServicesImpl implements IUsersRequestsToolsServic
     }
 
     @Override
-    public ResponseEntity<UsersRequestsToolsDTO> findByHandasahNameAndAddressAndRequestStatus(String handasahName, int requestStatus, String address) {
-        Optional<UsersRequestsToolsEntity> usersRequestsToolsEntity = iUsersRequestsToolsRepository.findByHandasahNameAndRequestStatusAndAddress(handasahName, requestStatus, address);
-
-        if (usersRequestsToolsEntity.isEmpty()) {
+    public ResponseEntity<List<UsersRequestsToolsDTO>> findByHandasahNameAndAddressAndRequestStatus(String handasahName, int requestStatus, String address) {
+        List<UsersRequestsToolsEntity> usersRequestsToolsEntity = iUsersRequestsToolsRepository.findByHandasahNameAndRequestStatusAndAddress(handasahName, requestStatus, address);
+        List<UsersRequestsToolsDTO> usersRequestsToolsDTOList = usersRequestsToolsEntity
+                .stream()
+                .map(I_USERS_REQUESTS_TOOLS_MAPPER::usersRequestsToolsEntityToUsersRequestsToolsDTO)
+                .collect(Collectors.toList());
+        if (usersRequestsToolsDTOList.isEmpty()) {
             throw new RecordNotFoundException("Sorry, No DATA Found!...");
         }
-        UsersRequestsToolsEntity exitingUsersRequestsToolsEntity = usersRequestsToolsEntity.get();
-        UsersRequestsToolsDTO usersRequestsToolsDTO = I_USERS_REQUESTS_TOOLS_MAPPER.usersRequestsToolsEntityToUsersRequestsToolsDTO(exitingUsersRequestsToolsEntity);
-        return new ResponseEntity<>(usersRequestsToolsDTO, HttpStatus.OK);
+
+        return new ResponseEntity<>(usersRequestsToolsDTOList, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<UsersRequestsToolsDTO>> findByHandasahNameAndAddressAndTechName(String handasahName, String techName, String address) {
+        List<UsersRequestsToolsEntity> usersRequestsToolsEntity = iUsersRequestsToolsRepository.findByHandasahNameAndTechNameAndAddress(handasahName, techName, address);
+        List<UsersRequestsToolsDTO> usersRequestsToolsDTOList = usersRequestsToolsEntity
+                .stream()
+                .map(I_USERS_REQUESTS_TOOLS_MAPPER::usersRequestsToolsEntityToUsersRequestsToolsDTO)
+                .collect(Collectors.toList());
+        if (usersRequestsToolsDTOList.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found!...");
+        }
+
+        return new ResponseEntity<>(usersRequestsToolsDTOList, HttpStatus.OK);
+
     }
 
 
