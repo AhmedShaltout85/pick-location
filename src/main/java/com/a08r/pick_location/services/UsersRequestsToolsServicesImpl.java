@@ -63,7 +63,6 @@ public class UsersRequestsToolsServicesImpl implements IUsersRequestsToolsServic
         UsersRequestsToolsEntity exitingUsersRequestsToolsEntity = usersRequestsToolsEntity.get();
         exitingUsersRequestsToolsEntity.setToolName(newUsersRequestsToolsDTO.getToolName());
         exitingUsersRequestsToolsEntity.setToolQty(newUsersRequestsToolsDTO.getToolQty());
-
         UsersRequestsToolsEntity updateUsersRequestsToolsEntity = iUsersRequestsToolsRepository.save(exitingUsersRequestsToolsEntity);
         UsersRequestsToolsDTO usersRequestsToolsDTO = I_USERS_REQUESTS_TOOLS_MAPPER.usersRequestsToolsEntityToUsersRequestsToolsDTO(updateUsersRequestsToolsEntity);
         return new ResponseEntity<>(usersRequestsToolsDTO, HttpStatus.OK);
