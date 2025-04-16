@@ -95,6 +95,8 @@ public class HotLineEntity {
     private String repairType;
     @Column(name = "delay_resons")
     private String delayResons;
+    @Column(name = "address")
+    private String address;
 
 
 }

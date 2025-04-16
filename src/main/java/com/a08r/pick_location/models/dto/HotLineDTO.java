@@ -17,4 +17,5 @@ public class HotLineDTO {
     private String caseType;
     private String x;
     private String y;
+    private String address;
 }
