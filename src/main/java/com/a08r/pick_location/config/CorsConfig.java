@@ -1,6 +1,5 @@
 package com.a08r.pick_location.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -13,10 +12,11 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
-                        .allowedOrigins("*")  // Allow all origins
-                        .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowedHeaders("*");
+                registry.addMapping("/**") // apply to all endpoints
+                        .allowedOrigins("*") // allow all origins
+                        .allowedMethods("*") // allow all HTTP methods (GET, POST, etc.)
+                        .allowedHeaders("*") // allow all headers
+                        .allowCredentials(false); // disable cookies (set to true if needed)
             }
         };
     }

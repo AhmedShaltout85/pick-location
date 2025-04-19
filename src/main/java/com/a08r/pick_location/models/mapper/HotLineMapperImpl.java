@@ -25,6 +25,9 @@ public class HotLineMapperImpl implements IHotLineMapper {
         hotLineEntity.setX(hotLineDTO.getX());
         hotLineEntity.setY(hotLineDTO.getY());
         hotLineEntity.setAddress(hotLineDTO.getAddress());
+        hotLineEntity.setNotes(hotLineDTO.getNotes());
+        hotLineEntity.setCaseRepairDateTime(hotLineDTO.getCaseRepairDateTime());
+
 
 
         return hotLineEntity;
@@ -48,6 +51,8 @@ public class HotLineMapperImpl implements IHotLineMapper {
         hotLineDTO.setX(hotLineEntity.getX());
         hotLineDTO.setY(hotLineEntity.getY());
         hotLineDTO.setAddress(hotLineEntity.getAddress());
+        hotLineDTO.setNotes(hotLineEntity.getNotes());
+        hotLineDTO.setCaseRepairDateTime(hotLineEntity.getCaseRepairDateTime());
 
         return hotLineDTO;
     }

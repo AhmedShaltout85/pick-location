@@ -18,4 +18,6 @@ public class HotLineDTO {
     private String x;
     private String y;
     private String address;
+    private String notes;
+    private String caseRepairDateTime;
 }

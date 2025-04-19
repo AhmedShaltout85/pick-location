@@ -2,16 +2,9 @@ package com.a08r.pick_location.services;
 
 import com.a08r.pick_location.errors.RecordNotFoundException;
 import com.a08r.pick_location.models.dto.HotLineDTO;
-import com.a08r.pick_location.models.dto.HotLineDataDTO;
-import com.a08r.pick_location.models.dto.PickLocationDTO;
-import com.a08r.pick_location.models.hotline.HotLineDataEntity;
 import com.a08r.pick_location.models.hotline.HotLineEntity;
-import com.a08r.pick_location.models.location.PickLocationEntity;
-import com.a08r.pick_location.models.mapper.HotLineDataMapperImpl;
 import com.a08r.pick_location.models.mapper.HotLineMapperImpl;
-import com.a08r.pick_location.models.mapper.IHotLineDataMapper;
 import com.a08r.pick_location.models.mapper.IHotLineMapper;
-import com.a08r.pick_location.repositores.IHotLineDataRepository;
 import com.a08r.pick_location.repositores.IHotLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -83,6 +76,8 @@ public class HotLineServicesImpl implements IHotLineServices {
         exitingHotLineEntity.setX(newHotLineDTO.getX());
         exitingHotLineEntity.setY(newHotLineDTO.getY());
         exitingHotLineEntity.setFinalClosed(newHotLineDTO.isFinalClosed());
+        exitingHotLineEntity.setCaseReportDateTime(newHotLineDTO.getCaseReportDateTime());
+        exitingHotLineEntity.setNotes(newHotLineDTO.getNotes());
 
         HotLineEntity updateHotLineEntity = this.iHotLineRepository.save(exitingHotLineEntity);
         HotLineDTO hotLineDTO = I_HOT_LINE_MAPPER.hotLineEntityToHotLineDTO(updateHotLineEntity);

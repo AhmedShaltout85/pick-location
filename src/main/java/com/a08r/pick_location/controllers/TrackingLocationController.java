@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/track-location")
-@CrossOrigin
+@CrossOrigin(origins ="*" )  // Allow CORS for Flutter Web
 //TODO://http://localhost:9999/pick-location/api/v1/track-location
 //TODO: we use @CrossOrigin to enable CORS for this controller (this mean no need to using https://localhost:9999)
 //TODO: https://documenter.getpostman.com/view/11963423/2sAXxQcrcV => POSTMAN DOCUMENTATION

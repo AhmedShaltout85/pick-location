@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin()  // Allow CORS for Flutter Web
+@CrossOrigin(origins ="*" )  // Allow CORS for Flutter Web
 public class DirectionsController {
 
     private static final String GOOGLE_MAPS_API_KEY = "AIzaSyDRaJJnyvmDSU8OgI8M20C5nmwHNc_AMvk";
