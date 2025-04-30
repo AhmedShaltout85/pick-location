@@ -121,6 +121,7 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         exitingPickLocationEntity.setHandasahName(newPickLocationDTO.getHandasah_name());
         exitingPickLocationEntity.setTechnicalName(newPickLocationDTO.getTechnical_name());
         exitingPickLocationEntity.setIsFinished(newPickLocationDTO.getIs_finished());
+        exitingPickLocationEntity.setIsApproved(newPickLocationDTO.getIs_approved());
         PickLocationEntity updatePickLocationEntity = this.iPickLocationRepository.save(exitingPickLocationEntity);
         PickLocationDTO pickLocationDTO = I_PICK_LOCATION_MAPPER.pickLocationEntityToPickLocationDTO(updatePickLocationEntity);
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
