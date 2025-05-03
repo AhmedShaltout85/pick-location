@@ -216,6 +216,7 @@ public class PickLocationServicesImpl implements IPickLocationServices {
         return new ResponseEntity<>(pickLocationDTO, HttpStatus.OK);
     }
 
+
     @Override
     public ResponseEntity<PickLocationDTO> findPickLocationByAddressAndFlag(String address, int flag) {
 
@@ -290,6 +291,18 @@ public class PickLocationServicesImpl implements IPickLocationServices {
             throw new RecordNotFoundException("Sorry, No DATA Found!...");
         }
         return new ResponseEntity<>(pickLocationDTOList, HttpStatus.OK);
+    }
+
+
+    @Override
+    public ResponseEntity<String> remove(Long id) {
+        boolean exists = iPickLocationRepository.existsById(id);
+        if (!exists) {
+            throw new RecordNotFoundException("the item with id: " + id + " not found!...");
+
+        }
+        this.iPickLocationRepository.deleteById(id);
+        return new ResponseEntity<>("The item has been deleted successfully!", HttpStatus.OK);
     }
 
 

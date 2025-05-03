@@ -29,6 +29,6 @@ public interface IPickLocationServices {
     ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndTechnicalAndIsApproved(String address, PickLocationDTO newPickLocationDTO);
     ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndCallerNameAndNumberAndBrokenType(String address, PickLocationDTO newPickLocationDTO);
     ResponseEntity<PickLocationDTO> updatePickLocationByAddressAndVideoCall(String address, PickLocationDTO newPickLocationDTO);
-
+    ResponseEntity<String> remove(Long id);
 
 }

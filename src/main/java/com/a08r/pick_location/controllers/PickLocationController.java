@@ -135,5 +135,10 @@ public class PickLocationController {
         return this.iPickLocationServices.findPickLocationByHandasahAndIsFinished(handasahName, isFinished);
     }
 
+    //TODO://DELETE http://localhost:9999/pick-location/api/v1/get-loc/remove-address/{id}
+    @DeleteMapping(path = "/remove-address/{id}")
+    public ResponseEntity<String> remove(@PathVariable Long id){
+        return this.iPickLocationServices.remove(id);
+    }
 
 }
