@@ -45,11 +45,12 @@ public class UsersRequestsToolsController {
         return this.iUsersRequestsToolsServices.updateRequestTools(id, usersRequestsToolsDto);
     }
 
-    //TODO://PUT http://localhost:9999/pick-location/api/v1/users-requests-tools/address/61 طريق الحرية الاسكندرية
-    @PutMapping(path = "/address/{address}")
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/users-requests-tools/address/شارع محمد صالح أبو يوسف طريق الحرية أبوقير أمام قسم الرمل أول الاسكندرية/tool-name/سباك
+    @PutMapping(path = "/address/{address}/tool-name/{toolName}")
     public ResponseEntity<UsersRequestsToolsDTO> updateUserRequestByAddress(@PathVariable String address,
+                                                                            @PathVariable String toolName,
                                                                             @RequestBody UsersRequestsToolsDTO usersRequestsToolsDTO) {
-        return this.iUsersRequestsToolsServices.updateRequestToolsByAddress(address, usersRequestsToolsDTO);
+        return this.iUsersRequestsToolsServices.updateRequestToolsByAddressAndToolName(address,toolName, usersRequestsToolsDTO);
     }
 
     //TODO://GET http://localhost:9999/pick-location/api/v1/users-requests-tools/handasah/هندسة فرع الرمل/address/فمنج امام قسم الرمل اول/requestStatus/1

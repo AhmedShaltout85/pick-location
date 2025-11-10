@@ -15,7 +15,7 @@ public interface IUsersRequestsToolsServices {
 
     ResponseEntity<UsersRequestsToolsDTO> createNewRequestTools(UsersRequestsToolsDTO newUsersRequestsToolsDTO);
     ResponseEntity<UsersRequestsToolsDTO> updateRequestTools(Long id, UsersRequestsToolsDTO newUsersRequestsToolsDTO);
-    ResponseEntity<UsersRequestsToolsDTO> updateRequestToolsByAddress(String address, UsersRequestsToolsDTO newUsersRequestsToolsDTO);
+    ResponseEntity<UsersRequestsToolsDTO> updateRequestToolsByAddressAndToolName(String address, String toolName, UsersRequestsToolsDTO newUsersRequestsToolsDTO);
     ResponseEntity<List<UsersRequestsToolsDTO>> findByHandasahNameAndAddressAndRequestStatus(String handasahName, int requestStatus, String address);
     ResponseEntity<List<UsersRequestsToolsDTO>> findByHandasahNameAndAddressAndTechName(String handasahName, String techName, String address);
 

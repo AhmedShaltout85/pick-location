@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface IUsersRequestsToolsRepository extends JpaRepository<UsersRequestsToolsEntity, Long> {
     Optional<UsersRequestsToolsEntity> findByHandasahName(String handasahName);
-    Optional<UsersRequestsToolsEntity> findByAddress(String address);
+    Optional<UsersRequestsToolsEntity> findByAddressAndToolName(String address, String toolName);
     Optional<UsersRequestsToolsEntity> findByHandasahNameAndRequestStatus(String handasahName, int requestStatus);
     List<UsersRequestsToolsEntity> findByHandasahNameAndRequestStatusAndAddress(String handasahName, int requestStatus, String address);
     List<UsersRequestsToolsEntity> findByHandasahNameAndTechNameAndAddress(String handasahName, String  techName, String address);

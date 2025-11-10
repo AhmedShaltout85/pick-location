@@ -69,9 +69,9 @@ public class UsersRequestsToolsServicesImpl implements IUsersRequestsToolsServic
     }
 
     @Override
-    public ResponseEntity<UsersRequestsToolsDTO> updateRequestToolsByAddress(String address, UsersRequestsToolsDTO newUsersRequestsToolsDTO) {
+    public ResponseEntity<UsersRequestsToolsDTO> updateRequestToolsByAddressAndToolName(String address, String toolName, UsersRequestsToolsDTO newUsersRequestsToolsDTO) {
 
-        Optional<UsersRequestsToolsEntity> usersRequestsToolsEntity = iUsersRequestsToolsRepository.findByAddress(address);
+        Optional<UsersRequestsToolsEntity> usersRequestsToolsEntity = iUsersRequestsToolsRepository.findByAddressAndToolName(address, toolName);
         if (usersRequestsToolsEntity.isEmpty()) {
             throw new RecordNotFoundException("the item with address: " + address + " not found!...");
         }
