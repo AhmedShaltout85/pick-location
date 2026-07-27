@@ -23,5 +23,6 @@ public class PickLocationDTO {
     private String caller_phone;
     private String broker_type;
     private int video_call;
+    private String date;
 
 }

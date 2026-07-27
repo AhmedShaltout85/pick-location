@@ -46,6 +46,8 @@ public class PickLocationEntity {
     private String callerNumber;
    @Column(name = "Video_Call")
     private int videoCall;
+   @Column(name= "Date")
+   private String date;
 
 
 
