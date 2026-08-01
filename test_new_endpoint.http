@@ -1,0 +1,118 @@
+### ==================== Complaint Types ====================
+
+### Get all complaint types
+GET http://localhost:9999/pick-location/api/v1/complaint-types/all
+Accept: application/json
+
+### Get complaint type by ID
+GET http://localhost:9999/pick-location/api/v1/complaint-types/1
+Accept: application/json
+
+### Create complaint type
+POST http://localhost:9999/pick-location/api/v1/complaint-types/create
+Content-Type: application/json
+
+{
+  "complaintName": "شكوى مياه"
+}
+
+### Update complaint type
+PUT http://localhost:9999/pick-location/api/v1/complaint-types/1
+Content-Type: application/json
+
+{
+  "complaintName": "شكوى مياه شرب"
+}
+
+### Delete complaint type
+DELETE http://localhost:9999/pick-location/api/v1/complaint-types/1
+
+
+### ==================== Neighborhoods ====================
+
+### Get all neighborhoods
+GET http://localhost:9999/pick-location/api/v1/neighborhoods/all
+Accept: application/json
+
+### Get neighborhood by ID
+GET http://localhost:9999/pick-location/api/v1/neighborhoods/1
+Accept: application/json
+
+### Create neighborhood
+POST http://localhost:9999/pick-location/api/v1/neighborhoods/create
+Content-Type: application/json
+
+{
+  "neighborhoodName": "الحي الأول"
+}
+
+### Update neighborhood
+PUT http://localhost:9999/pick-location/api/v1/neighborhoods/1
+Content-Type: application/json
+
+{
+  "neighborhoodName": "الحي الثاني"
+}
+
+### Delete neighborhood
+DELETE http://localhost:9999/pick-location/api/v1/neighborhoods/1
+
+
+### ==================== Repair Status ====================
+
+### Get all repair statuses
+GET http://localhost:9999/pick-location/api/v1/repaire-status/all
+Accept: application/json
+
+### Get repair status by ID
+GET http://localhost:9999/pick-location/api/v1/repaire-status/1
+Accept: application/json
+
+### Create repair status
+POST http://localhost:9999/pick-location/api/v1/repaire-status/create
+Content-Type: application/json
+
+{
+  "repaireType": "إصلاح عادي"
+}
+
+### Update repaire status
+PUT http://localhost:9999/pick-location/api/v1/repaire-status/1
+Content-Type: application/json
+
+{
+  "repaireType": "إصلاح عاجل"
+}
+
+### Delete repair status
+DELETE http://localhost:9999/pick-location/api/v1/repaire-status/1
+
+
+### ==================== Approval Authorities ====================
+
+### Get all approval authorities
+GET http://localhost:9999/pick-location/api/v1/approval-authorities/all
+Accept: application/json
+
+### Get approval authority by ID
+GET http://localhost:9999/pick-location/api/v1/approval-authorities/1
+Accept: application/json
+
+### Create approval authority
+POST http://localhost:9999/pick-location/api/v1/approval-authorities/create
+Content-Type: application/json
+
+{
+  "approvalName": "manager"
+}
+
+### Update approval authority
+PUT http://localhost:9999/pick-location/api/v1/approval-authorities/1
+Content-Type: application/json
+
+{
+  "approvalName": "general manager"
+}
+
+### Delete approval authority
+DELETE http://localhost:9999/pick-location/api/v1/approval-authorities/1
