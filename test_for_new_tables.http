@@ -1,0 +1,58 @@
+### ==================== Important Status ====================
+
+### Get all important statuses
+GET http://localhost:9999/pick-location/api/v1/important-status/all
+Accept: application/json
+
+### Get important status by ID
+GET http://localhost:9999/pick-location/api/v1/important-status/1
+Accept: application/json
+
+### Create important status
+POST http://localhost:9999/pick-location/api/v1/important-status/create
+Content-Type: application/json
+
+{
+  "importantName": "عالي"
+}
+
+### Update important status
+PUT http://localhost:9999/pick-location/api/v1/important-status/1
+Content-Type: application/json
+
+{
+  "importantName": "متوسط"
+}
+
+### Delete important status
+DELETE http://localhost:9999/pick-location/api/v1/important-status/1
+
+
+### ==================== Risk Status ====================
+
+### Get all risk statuses
+GET http://localhost:9999/pick-location/api/v1/risk-status/all
+Accept: application/json
+
+### Get risk status by ID
+GET http://localhost:9999/pick-location/api/v1/risk-status/1
+Accept: application/json
+
+### Create risk status
+POST http://localhost:9999/pick-location/api/v1/risk-status/create
+Content-Type: application/json
+
+{
+  "riskName": "خطر عالي"
+}
+
+### Update risk status
+PUT http://localhost:9999/pick-location/api/v1/risk-status/1
+Content-Type: application/json
+
+{
+  "riskName": "خطر متوسط"
+}
+
+### Delete risk status
+DELETE http://localhost:9999/pick-location/api/v1/risk-status/1
