@@ -1,0 +1,28 @@
+### ==================== Sectors ====================
+
+### Get all sectors
+GET http://localhost:9999/pick-location/api/v1/sectors/all
+Accept: application/json
+
+### Get sector by ID
+GET http://localhost:9999/pick-location/api/v1/sectors/1
+Accept: application/json
+
+### Create sector
+POST http://localhost:9999/pick-location/api/v1/sectors/create
+Content-Type: application/json
+
+{
+  "sectorName": "قسم الكهرباء"
+}
+
+### Update sector
+PUT http://localhost:9999/pick-location/api/v1/sectors/1
+Content-Type: application/json
+
+{
+  "sectorName": "قسم المياه"
+}
+
+### Delete sector
+DELETE http://localhost:9999/pick-location/api/v1/sectors/1
