@@ -32,7 +32,7 @@ public class ComplaintDTO {
     private String latitude;
     private int isDeleted;
     private int isFinished;
-    private Integer isTracked;
+    private int isTracked;
     private String currentUsername;
     private String deletedAt;
     private String finishedAt;

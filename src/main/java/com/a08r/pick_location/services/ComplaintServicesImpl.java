@@ -124,6 +124,7 @@ public class ComplaintServicesImpl implements IComplaintServices {
         complaintEntity.setLatitude(complaintDTO.getLatitude());
         complaintEntity.setIsDeleted(complaintDTO.getIsDeleted());
         complaintEntity.setIsFinished(complaintDTO.getIsFinished());
+        complaintEntity.setIsTracked(complaintDTO.getIsTracked());
         complaintEntity.setCurrentUsername(complaintDTO.getCurrentUsername());
         complaintEntity.setDeletedAt(complaintDTO.getDeletedAt());
         complaintEntity.setFinishedAt(complaintDTO.getFinishedAt());

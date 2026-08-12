@@ -30,7 +30,7 @@ CREATE TABLE complaints (
     latitude                NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج',
     is_deleted              BIT NOT NULL DEFAULT 0,
     is_finished             BIT NOT NULL DEFAULT 0,
-    is_tracked              BIT NULL DEFAULT 0,
+    is_tracked              BIT NOT NULL DEFAULT 0,
     current_username        NVARCHAR(255) NOT NULL,
     deleted_at              DATETIME2 NULL,
     finished_at             DATETIME2 NULL
@@ -78,7 +78,7 @@ CREATE TABLE complaints (
 | `latitude` | `latitude` | `String` | `"لم يدرج"` |
 | `is_deleted` | `isDeleted` | `Integer` | `0` |
 | `is_finished` | `isFinished` | `Integer` | `0` |
-| `is_tracked` | `isTracked` | `Integer` | `null` |
+| `is_tracked` | `isTracked` | `int` | `0` |
 | `current_username` | `currentUsername` | `String` | **required** |
 | `deleted_at` | `deletedAt` | `String` | `null` |
 | `finished_at` | `finishedAt` | `String` | `null` |
@@ -127,8 +127,7 @@ CREATE TABLE complaints (
 - `createdAt` / `updatedAt`: `LocalDateTime.now().toString()` if null/blank
 - All string fields with DB default `"لم يدرج"`: default to `"لم يدرج"` if null/blank
 - `repeatComplaintNumber`, `reportNumber`: default to `0` if null
-- `isDeleted`, `isFinished`: default to `0` if null
-- `isTracked`: nullable `Integer`, no default applied in mapper
+- `isDeleted`, `isFinished`, `isTracked`: default to `0` if null
 
 ---
 
@@ -151,3 +150,7 @@ CREATE TABLE complaints (
 - Added `isTracked` field to Entity (`Integer`), DTO (`Integer`), and Mapper
 - Added `PUT /{id}/tracked` endpoint for updating tracked status
 - Changed `isTracked` to `Integer` (wrapper) to handle NULL values from existing records
+
+### 2026-08-11 (Updated)
+- Changed `is_tracked` column from `BIT NULL DEFAULT 0` to `BIT NOT NULL DEFAULT 0`
+- Changed `isTracked` type from `Integer` (wrapper) to `int` (primitive) in Entity and DTO

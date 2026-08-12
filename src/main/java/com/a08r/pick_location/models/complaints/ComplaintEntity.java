@@ -62,7 +62,7 @@ public class ComplaintEntity {
     @Column(name = "is_finished")
     private int isFinished;
     @Column(name = "is_tracked")
-    private Integer isTracked;
+    private int isTracked;
     @Column(name = "current_username")
     private String currentUsername;
     @Column(name = "deleted_at")
