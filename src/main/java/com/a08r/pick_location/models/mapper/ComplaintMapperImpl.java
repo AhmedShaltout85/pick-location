@@ -50,6 +50,8 @@ public class ComplaintMapperImpl implements IComplaintMapper {
         complaintEntity.setCurrentUsername(complaintDTO.getCurrentUsername());
         complaintEntity.setDeletedAt(complaintDTO.getDeletedAt());
         complaintEntity.setFinishedAt(complaintDTO.getFinishedAt());
+        complaintEntity.setComplaintType(defaultIfBlank(complaintDTO.getComplaintType()));
+        complaintEntity.setSectorName(defaultIfBlank(complaintDTO.getSectorName()));
         return complaintEntity;
     }
 
@@ -87,6 +89,8 @@ public class ComplaintMapperImpl implements IComplaintMapper {
         complaintDTO.setCurrentUsername(complaintEntity.getCurrentUsername());
         complaintDTO.setDeletedAt(complaintEntity.getDeletedAt());
         complaintDTO.setFinishedAt(complaintEntity.getFinishedAt());
+        complaintDTO.setComplaintType(complaintEntity.getComplaintType());
+        complaintDTO.setSectorName(complaintEntity.getSectorName());
         return complaintDTO;
     }
 }

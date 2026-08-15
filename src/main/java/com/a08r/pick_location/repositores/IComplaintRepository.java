@@ -13,6 +13,8 @@ public interface IComplaintRepository extends JpaRepository<ComplaintEntity, Lon
     List<ComplaintEntity> findByCurrentUsername(String currentUsername);
     List<ComplaintEntity> findByIsDeleted(int isDeleted);
     List<ComplaintEntity> findByIsFinished(int isFinished);
+    List<ComplaintEntity> findByComplaintType(String complaintType);
+    List<ComplaintEntity> findBySectorName(String sectorName);
     List<ComplaintEntity> findByNeighborhoodAndComplaintStatus(String neighborhood, String complaintStatus);
     List<ComplaintEntity> findByCurrentUsernameAndIsDeleted(String currentUsername, int isDeleted);
 }

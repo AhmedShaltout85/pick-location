@@ -11,6 +11,9 @@ public interface IComplaintServices {
     ResponseEntity<List<ComplaintDTO>> findByNeighborhood(String neighborhood);
     ResponseEntity<List<ComplaintDTO>> findByComplaintStatus(String complaintStatus);
     ResponseEntity<List<ComplaintDTO>> findByCurrentUsername(String currentUsername);
+    ResponseEntity<List<ComplaintDTO>> findByIsFinished(int isFinished);
+    ResponseEntity<List<ComplaintDTO>> findByComplaintType(String complaintType);
+    ResponseEntity<List<ComplaintDTO>> findBySectorName(String sectorName);
     ResponseEntity<ComplaintDTO> create(ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> update(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> finish(Long id);

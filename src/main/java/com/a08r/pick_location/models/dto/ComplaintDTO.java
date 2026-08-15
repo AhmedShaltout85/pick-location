@@ -36,4 +36,6 @@ public class ComplaintDTO {
     private String currentUsername;
     private String deletedAt;
     private String finishedAt;
+    private String complaintType;
+    private String sectorName;
 }

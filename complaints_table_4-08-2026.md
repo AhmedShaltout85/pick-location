@@ -1,6 +1,6 @@
 # Plan: Implement CRUD for `complaints` table
 
-## Date: 2026-08-04 (Updated: 2026-08-11)
+## Date: 2026-08-04 (Updated: 2026-08-15)
 
 ## Database Table
 
@@ -33,7 +33,9 @@ CREATE TABLE complaints (
     is_tracked              BIT NOT NULL DEFAULT 0,
     current_username        NVARCHAR(255) NOT NULL,
     deleted_at              DATETIME2 NULL,
-    finished_at             DATETIME2 NULL
+    finished_at             DATETIME2 NULL,
+    complaint_type          NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج',
+    sector_name             NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج'
 );
 ```
 
@@ -50,7 +52,7 @@ CREATE TABLE complaints (
 
 ---
 
-## Field Mapping (27 fields)
+## Field Mapping (29 fields)
 
 | DB Column | Java Field | Java Type | Default |
 |---|---|---|---|
@@ -82,6 +84,8 @@ CREATE TABLE complaints (
 | `current_username` | `currentUsername` | `String` | **required** |
 | `deleted_at` | `deletedAt` | `String` | `null` |
 | `finished_at` | `finishedAt` | `String` | `null` |
+| `complaint_type` | `complaintType` | `String` | `"لم يدرج"` |
+| `sector_name` | `sectorName` | `String` | `"لم يدرج"` |
 
 ---
 
@@ -102,7 +106,7 @@ CREATE TABLE complaints (
 
 ---
 
-## Endpoints (12 total)
+## Endpoints (17 total)
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -111,6 +115,9 @@ CREATE TABLE complaints (
 | GET | `/api/v1/complaints/neighborhood/{neighborhood}` | Filter by neighborhood |
 | GET | `/api/v1/complaints/status/{complaintStatus}` | Filter by complaint status |
 | GET | `/api/v1/complaints/user/{currentUsername}` | Filter by current user |
+| GET | `/api/v1/complaints/finished/{isFinished}` | Filter by isFinished (0=not finished, 1=finished) |
+| GET | `/api/v1/complaints/complaint-type/{complaintType}` | Filter by complaint type |
+| GET | `/api/v1/complaints/sector-name/{sectorName}` | Filter by sector name |
 | POST | `/api/v1/complaints/create` | Create complaint |
 | PUT | `/api/v1/complaints/{id}` | Update complaint (full) |
 | PUT | `/api/v1/complaints/{id}/repeat-complaint-number` | Update repeat complaint number only |
@@ -154,3 +161,16 @@ CREATE TABLE complaints (
 ### 2026-08-11 (Updated)
 - Changed `is_tracked` column from `BIT NULL DEFAULT 0` to `BIT NOT NULL DEFAULT 0`
 - Changed `isTracked` type from `Integer` (wrapper) to `int` (primitive) in Entity and DTO
+
+### 2026-08-15
+- Added `GET /api/v1/complaints/finished/{isFinished}` endpoint to filter complaints by isFinished status
+- Service method: `findByIsFinished(int isFinished)` returns complaints where isFinished matches (0=not finished, 1=finished)
+- Uses existing repository method `findByIsFinished(int isFinished)`
+
+### 2026-08-15 (Updated)
+- Added 2 new columns: `complaint_type NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج'` and `sector_name NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج'`
+- Added `complaintType` and `sectorName` fields to Entity, DTO, and Mapper
+- Added `findByComplaintType(String)` and `findBySectorName(String)` to Repository
+- Added `GET /api/v1/complaints/complaint-type/{complaintType}` endpoint
+- Added `GET /api/v1/complaints/sector-name/{sectorName}` endpoint
+- Total fields: 29, Total endpoints: 17

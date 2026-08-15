@@ -89,6 +89,45 @@ public class ComplaintServicesImpl implements IComplaintServices {
     }
 
     @Override
+    public ResponseEntity<List<ComplaintDTO>> findByIsFinished(int isFinished) {
+        List<ComplaintEntity> complaintEntities = iComplaintRepository.findByIsFinished(isFinished);
+        List<ComplaintDTO> complaintDTOS = complaintEntities
+                .stream()
+                .map(I_COMPLAINT_MAPPER::complaintEntityToComplaintDTO)
+                .collect(Collectors.toList());
+        if (complaintDTOS.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found for isFinished: " + isFinished + "!...");
+        }
+        return new ResponseEntity<>(complaintDTOS, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<ComplaintDTO>> findByComplaintType(String complaintType) {
+        List<ComplaintEntity> complaintEntities = iComplaintRepository.findByComplaintType(complaintType);
+        List<ComplaintDTO> complaintDTOS = complaintEntities
+                .stream()
+                .map(I_COMPLAINT_MAPPER::complaintEntityToComplaintDTO)
+                .collect(Collectors.toList());
+        if (complaintDTOS.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found for complaintType: " + complaintType + "!...");
+        }
+        return new ResponseEntity<>(complaintDTOS, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<ComplaintDTO>> findBySectorName(String sectorName) {
+        List<ComplaintEntity> complaintEntities = iComplaintRepository.findBySectorName(sectorName);
+        List<ComplaintDTO> complaintDTOS = complaintEntities
+                .stream()
+                .map(I_COMPLAINT_MAPPER::complaintEntityToComplaintDTO)
+                .collect(Collectors.toList());
+        if (complaintDTOS.isEmpty()) {
+            throw new RecordNotFoundException("Sorry, No DATA Found for sectorName: " + sectorName + "!...");
+        }
+        return new ResponseEntity<>(complaintDTOS, HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<ComplaintDTO> create(ComplaintDTO complaintDTO) {
         final ComplaintEntity complaintEntity = I_COMPLAINT_MAPPER.complaintDTOToComplaintEntity(complaintDTO);
         final ComplaintEntity createdEntity = this.iComplaintRepository.save(complaintEntity);
@@ -128,6 +167,8 @@ public class ComplaintServicesImpl implements IComplaintServices {
         complaintEntity.setCurrentUsername(complaintDTO.getCurrentUsername());
         complaintEntity.setDeletedAt(complaintDTO.getDeletedAt());
         complaintEntity.setFinishedAt(complaintDTO.getFinishedAt());
+        complaintEntity.setComplaintType(complaintDTO.getComplaintType());
+        complaintEntity.setSectorName(complaintDTO.getSectorName());
         complaintEntity.setUpdatedAt(java.time.LocalDateTime.now().toString());
         ComplaintEntity updatedEntity = this.iComplaintRepository.save(complaintEntity);
         ComplaintDTO updatedDTO = I_COMPLAINT_MAPPER.complaintEntityToComplaintDTO(updatedEntity);

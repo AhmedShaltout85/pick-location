@@ -69,4 +69,8 @@ public class ComplaintEntity {
     private String deletedAt;
     @Column(name = "finished_at")
     private String finishedAt;
+    @Column(name = "complaint_type")
+    private String complaintType;
+    @Column(name = "sector_name")
+    private String sectorName;
 }

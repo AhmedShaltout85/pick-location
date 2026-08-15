@@ -45,6 +45,21 @@ public class ComplaintController {
         return this.iComplaintServices.findByCurrentUsername(currentUsername);
     }
 
+    @GetMapping("/finished/{isFinished}")
+    public ResponseEntity<List<ComplaintDTO>> findByIsFinished(@PathVariable int isFinished) {
+        return this.iComplaintServices.findByIsFinished(isFinished);
+    }
+
+    @GetMapping("/complaint-type/{complaintType}")
+    public ResponseEntity<List<ComplaintDTO>> findByComplaintType(@PathVariable String complaintType) {
+        return this.iComplaintServices.findByComplaintType(complaintType);
+    }
+
+    @GetMapping("/sector-name/{sectorName}")
+    public ResponseEntity<List<ComplaintDTO>> findBySectorName(@PathVariable String sectorName) {
+        return this.iComplaintServices.findBySectorName(sectorName);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<ComplaintDTO> create(@RequestBody ComplaintDTO complaintDTO) {
         return this.iComplaintServices.create(complaintDTO);

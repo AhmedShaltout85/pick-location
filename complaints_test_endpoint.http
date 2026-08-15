@@ -20,6 +20,22 @@ Accept: application/json
 GET http://localhost:9999/pick-location/api/v1/complaints/user/ahmed
 Accept: application/json
 
+### Get complaints by isFinished (not finished)
+GET http://localhost:9999/pick-location/api/v1/complaints/finished/0
+Accept: application/json
+
+### Get complaints by isFinished (finished)
+GET http://localhost:9999/pick-location/api/v1/complaints/finished/1
+Accept: application/json
+
+### Get complaints by complaint type
+GET http://localhost:9999/pick-location/api/v1/complaints/complaint-type/شكوى مياه
+Accept: application/json
+
+### Get complaints by sector name
+GET http://localhost:9999/pick-location/api/v1/complaints/sector-name/حي الملك فهد
+Accept: application/json
+
 ### Create complaint
 POST http://localhost:9999/pick-location/api/v1/complaints/create
 Content-Type: application/json
@@ -42,7 +58,9 @@ Content-Type: application/json
   "recipientName": "خالد",
   "gisLink": "https://gis.example.com/1",
   "longitude": "46.6753",
-  "latitude": "24.7136"
+  "latitude": "24.7136",
+  "complaintType": "شكوى مياه",
+  "sectorName": "حي الملك فهد"
 }
 
 ### Update complaint
@@ -67,7 +85,9 @@ Content-Type: application/json
   "recipientName": "خالد",
   "gisLink": "https://gis.example.com/1",
   "longitude": "46.6753",
-  "latitude": "24.7136"
+  "latitude": "24.7136",
+  "complaintType": "شكوى كهرباء",
+  "sectorName": "حي السلام"
 }
 
 ### Update repeat complaint number
