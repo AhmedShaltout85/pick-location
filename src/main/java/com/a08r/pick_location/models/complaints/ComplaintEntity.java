@@ -73,4 +73,6 @@ public class ComplaintEntity {
     private String complaintType;
     @Column(name = "sector_name")
     private String sectorName;
+    @Column(name = "urgency_number")
+    private Long urgencyNumber;
 }

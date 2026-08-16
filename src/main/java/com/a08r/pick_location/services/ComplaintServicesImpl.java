@@ -169,6 +169,7 @@ public class ComplaintServicesImpl implements IComplaintServices {
         complaintEntity.setFinishedAt(complaintDTO.getFinishedAt());
         complaintEntity.setComplaintType(complaintDTO.getComplaintType());
         complaintEntity.setSectorName(complaintDTO.getSectorName());
+        complaintEntity.setUrgencyNumber(complaintDTO.getUrgencyNumber() != null ? complaintDTO.getUrgencyNumber() : 0L);
         complaintEntity.setUpdatedAt(java.time.LocalDateTime.now().toString());
         ComplaintEntity updatedEntity = this.iComplaintRepository.save(complaintEntity);
         ComplaintDTO updatedDTO = I_COMPLAINT_MAPPER.complaintEntityToComplaintDTO(updatedEntity);
@@ -184,6 +185,21 @@ public class ComplaintServicesImpl implements IComplaintServices {
         ComplaintEntity complaintEntity = existingEntity.get();
         complaintEntity.setRepeatComplaintNumber(
                 complaintDTO.getRepeatComplaintNumber() != null ? complaintDTO.getRepeatComplaintNumber() : 0L);
+        complaintEntity.setUpdatedAt(java.time.LocalDateTime.now().toString());
+        ComplaintEntity updatedEntity = this.iComplaintRepository.save(complaintEntity);
+        ComplaintDTO updatedDTO = I_COMPLAINT_MAPPER.complaintEntityToComplaintDTO(updatedEntity);
+        return new ResponseEntity<>(updatedDTO, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ComplaintDTO> updateUrgencyNumber(Long id, ComplaintDTO complaintDTO) {
+        Optional<ComplaintEntity> existingEntity = iComplaintRepository.findById(id);
+        if (existingEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with id: " + id + " not found!...");
+        }
+        ComplaintEntity complaintEntity = existingEntity.get();
+        complaintEntity.setUrgencyNumber(
+                complaintDTO.getUrgencyNumber() != null ? complaintDTO.getUrgencyNumber() : 0L);
         complaintEntity.setUpdatedAt(java.time.LocalDateTime.now().toString());
         ComplaintEntity updatedEntity = this.iComplaintRepository.save(complaintEntity);
         ComplaintDTO updatedDTO = I_COMPLAINT_MAPPER.complaintEntityToComplaintDTO(updatedEntity);
@@ -228,6 +244,27 @@ public class ComplaintServicesImpl implements IComplaintServices {
         }
         ComplaintEntity complaintEntity = existingEntity.get();
         complaintEntity.setIsTracked(complaintDTO.getIsTracked());
+        complaintEntity.setUpdatedAt(java.time.LocalDateTime.now().toString());
+        ComplaintEntity updatedEntity = this.iComplaintRepository.save(complaintEntity);
+        ComplaintDTO updatedDTO = I_COMPLAINT_MAPPER.complaintEntityToComplaintDTO(updatedEntity);
+        return new ResponseEntity<>(updatedDTO, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ComplaintDTO> updateStatusFlags(Long id, ComplaintDTO complaintDTO) {
+        Optional<ComplaintEntity> existingEntity = iComplaintRepository.findById(id);
+        if (existingEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with id: " + id + " not found!...");
+        }
+        ComplaintEntity complaintEntity = existingEntity.get();
+        complaintEntity.setIsDeleted(complaintDTO.getIsDeleted());
+        complaintEntity.setIsFinished(complaintDTO.getIsFinished());
+        if (complaintDTO.getIsDeleted() == 1) {
+            complaintEntity.setDeletedAt(java.time.LocalDateTime.now().toString());
+        }
+        if (complaintDTO.getIsFinished() == 1) {
+            complaintEntity.setFinishedAt(java.time.LocalDateTime.now().toString());
+        }
         complaintEntity.setUpdatedAt(java.time.LocalDateTime.now().toString());
         ComplaintEntity updatedEntity = this.iComplaintRepository.save(complaintEntity);
         ComplaintDTO updatedDTO = I_COMPLAINT_MAPPER.complaintEntityToComplaintDTO(updatedEntity);

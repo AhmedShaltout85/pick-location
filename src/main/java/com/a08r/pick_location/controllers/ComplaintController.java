@@ -76,6 +76,12 @@ public class ComplaintController {
         return this.iComplaintServices.updateRepeatComplaintNumber(id, complaintDTO);
     }
 
+    @PutMapping("/{id}/urgency-number")
+    public ResponseEntity<ComplaintDTO> updateUrgencyNumber(@PathVariable Long id,
+                                                             @RequestBody ComplaintDTO complaintDTO) {
+        return this.iComplaintServices.updateUrgencyNumber(id, complaintDTO);
+    }
+
     @PutMapping("/{id}/recipient")
     public ResponseEntity<ComplaintDTO> updateRecipient(@PathVariable Long id,
                                                          @RequestBody ComplaintDTO complaintDTO) {
@@ -86,6 +92,12 @@ public class ComplaintController {
     public ResponseEntity<ComplaintDTO> updateTracked(@PathVariable Long id,
                                                        @RequestBody ComplaintDTO complaintDTO) {
         return this.iComplaintServices.updateTracked(id, complaintDTO);
+    }
+
+    @PutMapping("/{id}/status-flags")
+    public ResponseEntity<ComplaintDTO> updateStatusFlags(@PathVariable Long id,
+                                                           @RequestBody ComplaintDTO complaintDTO) {
+        return this.iComplaintServices.updateStatusFlags(id, complaintDTO);
     }
 
     @PutMapping("/{id}/finish")

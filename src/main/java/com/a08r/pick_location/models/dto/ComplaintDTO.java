@@ -38,4 +38,5 @@ public class ComplaintDTO {
     private String finishedAt;
     private String complaintType;
     private String sectorName;
+    private Long urgencyNumber;
 }

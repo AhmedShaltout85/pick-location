@@ -35,7 +35,8 @@ CREATE TABLE complaints (
     deleted_at              DATETIME2 NULL,
     finished_at             DATETIME2 NULL,
     complaint_type          NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج',
-    sector_name             NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج'
+    sector_name             NVARCHAR(255) NOT NULL DEFAULT N'لم يدرج',
+    urgency_number          BIGINT NOT NULL DEFAULT 0
 );
 ```
 
@@ -52,7 +53,7 @@ CREATE TABLE complaints (
 
 ---
 
-## Field Mapping (29 fields)
+## Field Mapping (30 fields)
 
 | DB Column | Java Field | Java Type | Default |
 |---|---|---|---|
@@ -86,6 +87,7 @@ CREATE TABLE complaints (
 | `finished_at` | `finishedAt` | `String` | `null` |
 | `complaint_type` | `complaintType` | `String` | `"لم يدرج"` |
 | `sector_name` | `sectorName` | `String` | `"لم يدرج"` |
+| `urgency_number` | `urgencyNumber` | `Long` | `0` |
 
 ---
 
@@ -106,7 +108,7 @@ CREATE TABLE complaints (
 
 ---
 
-## Endpoints (17 total)
+## Endpoints (19 total)
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -121,8 +123,10 @@ CREATE TABLE complaints (
 | POST | `/api/v1/complaints/create` | Create complaint |
 | PUT | `/api/v1/complaints/{id}` | Update complaint (full) |
 | PUT | `/api/v1/complaints/{id}/repeat-complaint-number` | Update repeat complaint number only |
+| PUT | `/api/v1/complaints/{id}/urgency-number` | Update urgency number only |
 | PUT | `/api/v1/complaints/{id}/recipient` | Update recipient destination and user only |
 | PUT | `/api/v1/complaints/{id}/tracked` | Update tracked status only |
+| PUT | `/api/v1/complaints/{id}/status-flags` | Update isDeleted and isFinished flags |
 | PUT | `/api/v1/complaints/{id}/finish` | Mark as finished |
 | PUT | `/api/v1/complaints/{id}/delete` | Soft-delete complaint |
 | DELETE | `/api/v1/complaints/{id}` | Hard-delete complaint |
@@ -134,6 +138,7 @@ CREATE TABLE complaints (
 - `createdAt` / `updatedAt`: `LocalDateTime.now().toString()` if null/blank
 - All string fields with DB default `"لم يدرج"`: default to `"لم يدرج"` if null/blank
 - `repeatComplaintNumber`, `reportNumber`: default to `0` if null
+- `urgencyNumber`: default to `0` if null
 - `isDeleted`, `isFinished`, `isTracked`: default to `0` if null
 
 ---
@@ -174,3 +179,17 @@ CREATE TABLE complaints (
 - Added `GET /api/v1/complaints/complaint-type/{complaintType}` endpoint
 - Added `GET /api/v1/complaints/sector-name/{sectorName}` endpoint
 - Total fields: 29, Total endpoints: 17
+
+### 2026-08-15 (Updated)
+- Added new column `urgency_number BIGINT NOT NULL DEFAULT 0`
+- Added `urgencyNumber` field (`Long`) to Entity, DTO, and Mapper
+- Added `PUT /api/v1/complaints/{id}/urgency-number` endpoint for updating urgency number
+- Added `urgencyNumber` to `update()` full update method
+- Total fields: 30, Total endpoints: 18
+
+### 2026-08-15 (Updated)
+- Added `PUT /api/v1/complaints/{id}/status-flags` endpoint to update both `isDeleted` and `isFinished` in a single request
+- Automatically sets `deletedAt` when `isDeleted` changes to 1
+- Automatically sets `finishedAt` when `isFinished` changes to 1
+- Request body: `{ "isDeleted": 1, "isFinished": 1 }`
+- Total fields: 30, Total endpoints: 19

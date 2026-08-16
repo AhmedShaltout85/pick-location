@@ -52,6 +52,7 @@ public class ComplaintMapperImpl implements IComplaintMapper {
         complaintEntity.setFinishedAt(complaintDTO.getFinishedAt());
         complaintEntity.setComplaintType(defaultIfBlank(complaintDTO.getComplaintType()));
         complaintEntity.setSectorName(defaultIfBlank(complaintDTO.getSectorName()));
+        complaintEntity.setUrgencyNumber(complaintDTO.getUrgencyNumber() != null ? complaintDTO.getUrgencyNumber() : 0L);
         return complaintEntity;
     }
 
@@ -91,6 +92,7 @@ public class ComplaintMapperImpl implements IComplaintMapper {
         complaintDTO.setFinishedAt(complaintEntity.getFinishedAt());
         complaintDTO.setComplaintType(complaintEntity.getComplaintType());
         complaintDTO.setSectorName(complaintEntity.getSectorName());
+        complaintDTO.setUrgencyNumber(complaintEntity.getUrgencyNumber());
         return complaintDTO;
     }
 }

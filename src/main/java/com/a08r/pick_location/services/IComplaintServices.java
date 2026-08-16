@@ -18,8 +18,10 @@ public interface IComplaintServices {
     ResponseEntity<ComplaintDTO> update(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> finish(Long id);
     ResponseEntity<ComplaintDTO> updateRepeatComplaintNumber(Long id, ComplaintDTO complaintDTO);
+    ResponseEntity<ComplaintDTO> updateUrgencyNumber(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> updateRecipient(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> updateTracked(Long id, ComplaintDTO complaintDTO);
+    ResponseEntity<ComplaintDTO> updateStatusFlags(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> softDelete(Long id);
     ResponseEntity<String> remove(Long id);
 }

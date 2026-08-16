@@ -60,7 +60,8 @@ Content-Type: application/json
   "longitude": "46.6753",
   "latitude": "24.7136",
   "complaintType": "شكوى مياه",
-  "sectorName": "حي الملك فهد"
+  "sectorName": "حي الملك فهد",
+  "urgencyNumber": 3
 }
 
 ### Update complaint
@@ -87,7 +88,8 @@ Content-Type: application/json
   "longitude": "46.6753",
   "latitude": "24.7136",
   "complaintType": "شكوى كهرباء",
-  "sectorName": "حي السلام"
+  "sectorName": "حي السلام",
+  "urgencyNumber": 5
 }
 
 ### Update repeat complaint number
@@ -96,6 +98,14 @@ Content-Type: application/json
 
 {
   "repeatComplaintNumber": 2
+}
+
+### Update urgency number
+PUT http://localhost:9999/pick-location/api/v1/complaints/1/urgency-number
+Content-Type: application/json
+
+{
+  "urgencyNumber": 5
 }
 
 ### Update recipient destination and user
@@ -113,6 +123,15 @@ Content-Type: application/json
 
 {
   "isTracked": 1
+}
+
+### Update status flags (isDeleted and isFinished)
+PUT http://localhost:9999/pick-location/api/v1/complaints/1/status-flags
+Content-Type: application/json
+
+{
+  "isDeleted": 1,
+  "isFinished": 1
 }
 
 ### Finish complaint
