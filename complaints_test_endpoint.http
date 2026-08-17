@@ -134,6 +134,14 @@ Content-Type: application/json
   "isFinished": 1
 }
 
+### Update approval authority
+PUT http://localhost:9999/pick-location/api/v1/complaints/1/approval-authority
+Content-Type: application/json
+
+{
+  "approvalAuthority": "إدارة الهندسة"
+}
+
 ### Finish complaint
 PUT http://localhost:9999/pick-location/api/v1/complaints/1/finish
 Content-Type: application/json

@@ -108,7 +108,7 @@ CREATE TABLE complaints (
 
 ---
 
-## Endpoints (19 total)
+## Endpoints (20 total)
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -127,6 +127,7 @@ CREATE TABLE complaints (
 | PUT | `/api/v1/complaints/{id}/recipient` | Update recipient destination and user only |
 | PUT | `/api/v1/complaints/{id}/tracked` | Update tracked status only |
 | PUT | `/api/v1/complaints/{id}/status-flags` | Update isDeleted and isFinished flags |
+| PUT | `/api/v1/complaints/{id}/approval-authority` | Update approval authority only |
 | PUT | `/api/v1/complaints/{id}/finish` | Mark as finished |
 | PUT | `/api/v1/complaints/{id}/delete` | Soft-delete complaint |
 | DELETE | `/api/v1/complaints/{id}` | Hard-delete complaint |
@@ -193,3 +194,8 @@ CREATE TABLE complaints (
 - Automatically sets `finishedAt` when `isFinished` changes to 1
 - Request body: `{ "isDeleted": 1, "isFinished": 1 }`
 - Total fields: 30, Total endpoints: 19
+
+### 2026-08-15 (Updated)
+- Added `PUT /api/v1/complaints/{id}/approval-authority` endpoint for updating approval authority only
+- Request body: `{ "approvalAuthority": "إدارة الهندسة" }`
+- Total fields: 30, Total endpoints: 20
