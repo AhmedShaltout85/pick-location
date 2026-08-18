@@ -41,27 +41,32 @@ POST http://localhost:9999/pick-location/api/v1/complaints/create
 Content-Type: application/json
 
 {
-  "complaintAddress": "شارع الملك فهد",
-  "currentUsername": "ahmed",
-  "neighborhood": "الحي الأول",
-  "reporterName": "محمد",
-  "reporterPhone": "0500000000",
-  "complaintSource": "هاتف",
-  "complaintStatus": "مفتوح",
-  "complaintRepairStatus": "قيد التنفيذ",
-  "approvalAuthority": "إدارة المشتريات",
-  "pumpDiameter": "4 بوصة",
-  "seriousStatus": "عالي",
-  "complaintNote": "شكوى عاجلة",
-  "recipientDestination": "قسم الصيانة",
-  "recipientUser": "علي",
-  "recipientName": "خالد",
-  "gisLink": "https://gis.example.com/1",
-  "longitude": "46.6753",
-  "latitude": "24.7136",
-  "complaintType": "شكوى مياه",
-  "sectorName": "حي الملك فهد",
-  "urgencyNumber": 3
+    "neighborhood": "العجمي",
+    "repeatComplaintNumber": 0,
+    "complaintSource": "هاتف",
+    "reporterName": "محمد",
+    "reporterPhone": "0500000000",
+    "complaintAddress": "شارع الملك فهد",
+    "complaintRepairStatus": "يلزم استخراج تصريح",
+    "approvalAuthority": "السكرتير العام المساعد",
+    "pumpDiameter": "4 بوصة",
+    "seriousStatus": "مستقر",
+    "complaintStatus": "عادى",
+    "complaintNote": "تم الاصلاح",
+    "recipientDestination": "قسم الكهرباء",
+    "recipientUser": "محمد",
+    "reportNumber": 12344,
+    "recipientName": "خالد",
+    "gisLink": "http://196.219.231.3:8000/lab-api/lab-marker/430",
+    "longitude": "46.6753",
+    "latitude": "24.7136",
+    "isDeleted": 0,
+    "isFinished": 0,
+    "isTracked": 0,
+    "currentUsername": "ahmed",
+    "complaintType": "كسر",
+    "sectorName": "تكنولوجيا معلومات",
+    "urgencyNumber": 0
 }
 
 ### Update complaint
@@ -69,27 +74,32 @@ PUT http://localhost:9999/pick-location/api/v1/complaints/1
 Content-Type: application/json
 
 {
-  "complaintAddress": "شارع الملك فهد",
-  "currentUsername": "ahmed",
-  "neighborhood": "الحي الثاني",
-  "reporterName": "محمد",
-  "reporterPhone": "0500000000",
-  "complaintSource": "هاتف",
-  "complaintStatus": "مغلق",
-  "complaintRepairStatus": "تم الاصلاح",
-  "approvalAuthority": "إدارة المشتريات",
-  "pumpDiameter": "4 بوصة",
-  "seriousStatus": "منخفض",
-  "complaintNote": "تم الاصلاح",
-  "recipientDestination": "قسم الصيانة",
-  "recipientUser": "علي",
-  "recipientName": "خالد",
-  "gisLink": "https://gis.example.com/1",
-  "longitude": "46.6753",
-  "latitude": "24.7136",
-  "complaintType": "شكوى كهرباء",
-  "sectorName": "حي السلام",
-  "urgencyNumber": 5
+    "neighborhood": "العجمي",
+    "repeatComplaintNumber": 0,
+    "complaintSource": "هاتف",
+    "reporterName": "محمد",
+    "reporterPhone": "0500000000",
+    "complaintAddress": "شارع الملك فهد",
+    "complaintRepairStatus": "يلزم استخراج تصريح",
+    "approvalAuthority": "السكرتير العام المساعد",
+    "pumpDiameter": "4 بوصة",
+    "seriousStatus": "مستقر",
+    "complaintStatus": "عادى",
+    "complaintNote": "تم الاصلاح",
+    "recipientDestination": "قسم الكهرباء",
+    "recipientUser": "محمد",
+    "reportNumber": 12344,
+    "recipientName": "خالد",
+    "gisLink": "http://196.219.231.3:8000/lab-api/lab-marker/430",
+    "longitude": "46.6753",
+    "latitude": "24.7136",
+    "isDeleted": 0,
+    "isFinished": 0,
+    "isTracked": 0,
+    "currentUsername": "ahmed",
+    "complaintType": "كسر",
+    "sectorName": "تكنولوجيا معلومات",
+    "urgencyNumber": 1
 }
 
 ### Update repeat complaint number
@@ -113,8 +123,8 @@ PUT http://localhost:9999/pick-location/api/v1/complaints/1/recipient
 Content-Type: application/json
 
 {
-  "recipientDestination": "قسم الكهرباء",
-  "recipientUser": "محمد"
+            "recipientDestination": "",
+             "recipientUser": "لم يدرج",
 }
 
 ### Update tracked status
@@ -140,6 +150,14 @@ Content-Type: application/json
 
 {
   "approvalAuthority": "إدارة الهندسة"
+}
+
+### Update recipient destination
+PUT http://localhost:9999/pick-location/api/v1/complaints/1/recipient-destination
+Content-Type: application/json
+
+{
+  "recipientDestination": "قسم الصيانة"
 }
 
 ### Finish complaint

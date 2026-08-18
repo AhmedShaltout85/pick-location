@@ -23,6 +23,7 @@ public interface IComplaintServices {
     ResponseEntity<ComplaintDTO> updateTracked(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> updateStatusFlags(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> updateApprovalAuthority(Long id, ComplaintDTO complaintDTO);
+    ResponseEntity<ComplaintDTO> updateRecipientDestination(Long id, ComplaintDTO complaintDTO);
     ResponseEntity<ComplaintDTO> softDelete(Long id);
     ResponseEntity<String> remove(Long id);
 }

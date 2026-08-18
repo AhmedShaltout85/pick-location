@@ -102,8 +102,14 @@ public class ComplaintController {
 
     @PutMapping("/{id}/approval-authority")
     public ResponseEntity<ComplaintDTO> updateApprovalAuthority(@PathVariable Long id,
-                                                                 @RequestBody ComplaintDTO complaintDTO) {
+                                                                  @RequestBody ComplaintDTO complaintDTO) {
         return this.iComplaintServices.updateApprovalAuthority(id, complaintDTO);
+    }
+
+    @PutMapping("/{id}/recipient-destination")
+    public ResponseEntity<ComplaintDTO> updateRecipientDestination(@PathVariable Long id,
+                                                                    @RequestBody ComplaintDTO complaintDTO) {
+        return this.iComplaintServices.updateRecipientDestination(id, complaintDTO);
     }
 
     @PutMapping("/{id}/finish")

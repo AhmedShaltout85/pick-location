@@ -286,6 +286,20 @@ public class ComplaintServicesImpl implements IComplaintServices {
     }
 
     @Override
+    public ResponseEntity<ComplaintDTO> updateRecipientDestination(Long id, ComplaintDTO complaintDTO) {
+        Optional<ComplaintEntity> existingEntity = iComplaintRepository.findById(id);
+        if (existingEntity.isEmpty()) {
+            throw new RecordNotFoundException("the item with id: " + id + " not found!...");
+        }
+        ComplaintEntity complaintEntity = existingEntity.get();
+        complaintEntity.setRecipientDestination(complaintDTO.getRecipientDestination());
+        complaintEntity.setUpdatedAt(java.time.LocalDateTime.now().toString());
+        ComplaintEntity updatedEntity = this.iComplaintRepository.save(complaintEntity);
+        ComplaintDTO updatedDTO = I_COMPLAINT_MAPPER.complaintEntityToComplaintDTO(updatedEntity);
+        return new ResponseEntity<>(updatedDTO, HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<ComplaintDTO> softDelete(Long id) {
         Optional<ComplaintEntity> existingEntity = iComplaintRepository.findById(id);
         if (existingEntity.isEmpty()) {
