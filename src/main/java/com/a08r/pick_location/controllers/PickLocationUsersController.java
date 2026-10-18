@@ -57,4 +57,10 @@ public class PickLocationUsersController {
         return this.iPickLocationUsersServices.getUsersByRoleAndControlUnit(role, controlUnit);
     }
 
+    //TODO://DELETE http://localhost:9999/pick-location/api/v1/get-loc/remove-user/{id}
+    @DeleteMapping(path = "/remove-user/{id}")
+    public ResponseEntity<String> remove(@PathVariable Long id){
+        return this.iPickLocationUsersServices.remove(id);
+    }
+
 }

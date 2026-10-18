@@ -18,5 +18,6 @@ public interface IPickLocationUsersServices {
 
     ResponseEntity<List<String>> getUsersByRoleAndControlUnit(int role,String controlUnit);
 
+    ResponseEntity<String> remove(Long id);
 
 }

@@ -92,5 +92,15 @@ public class PickLocationHandasahServicesImpl implements IPickLocationHandasahSe
 
     }
 
+    @Override
+    public ResponseEntity<String> remove(Long id) {
+        boolean exists = iPickLocationHandasahRepository.existsById(id);
+        if (!exists) {
+            throw new RecordNotFoundException("the item with id: " + id + " not found!...");
+
+        }
+        this.iPickLocationHandasahRepository.deleteById(id);
+        return new ResponseEntity<>("The item has been deleted successfully!", HttpStatus.OK);
+    }
 
 }

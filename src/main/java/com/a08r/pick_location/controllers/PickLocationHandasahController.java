@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1/handasah")
 @CrossOrigin(origins ="*" )  // Allow CORS for Flutter Web
-//TODO://http://localhost:9999/pick-location/api/v1/users
+//TODO://http://localhost:9999/pick-location/api/v1/handasah
 //TODO: we use @CrossOrigin to enable CORS for this controller (this mean no need to using https://localhost:9999)
 //TODO: https://documenter.getpostman.com/view/11963423/2sAXxQcrcV => POSTMAN DOCUMENTATION
 public class PickLocationHandasahController {
@@ -51,6 +51,11 @@ public class PickLocationHandasahController {
     public ResponseEntity<PickLocationHandasahDTO> findStoreNameByHandasahName(@PathVariable String handasahName){
         return this.iPickLocationHandasahServices.getStoreName(handasahName);
 
+    }
+    //TODO://DELETE http://localhost:9999/pick-location/api/v1/get-loc/remove-handasah/{id}
+    @DeleteMapping(path = "/remove-handasah/{id}")
+    public ResponseEntity<String> remove(@PathVariable Long id){
+        return this.iPickLocationHandasahServices.remove(id);
     }
 
 

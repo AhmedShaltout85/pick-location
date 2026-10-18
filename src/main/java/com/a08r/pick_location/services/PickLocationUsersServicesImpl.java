@@ -90,6 +90,15 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
 
 
     }
+    @Override
+    public ResponseEntity<String> remove(Long id) {
+        boolean exists = iPickLocationUsersRepository.existsById(id);
+        if (!exists) {
+            throw new RecordNotFoundException("the item with id: " + id + " not found!...");
 
+        }
+        this.iPickLocationUsersRepository.deleteById(id);
+        return new ResponseEntity<>("The item has been deleted successfully!", HttpStatus.OK);
+        }
 
 }
