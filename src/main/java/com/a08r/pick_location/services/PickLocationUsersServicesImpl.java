@@ -94,7 +94,7 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
 
 
     }
-
+//TODO: update user
     @Override
     public ResponseEntity<PickLocationUsersDTO> updateUser(Long id, PickLocationUsersDTO newPickLocationUserDTO) {
         Optional<PickLocationUsersEntity> pickLocationUsersEntity = iPickLocationUsersRepository.findById(id);
@@ -117,7 +117,7 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
 
         return new ResponseEntity<>(pickLocationUsersDTO, HttpStatus.OK);
     }
-//TODO:
+//TODO: change password
 @Override
 public ResponseEntity<String> changePassword(ChangePasswordRequestDTO request) {
 
