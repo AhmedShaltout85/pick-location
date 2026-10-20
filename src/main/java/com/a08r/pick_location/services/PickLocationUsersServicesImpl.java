@@ -1,7 +1,9 @@
 package com.a08r.pick_location.services;
 
 import com.a08r.pick_location.errors.RecordNotFoundException;
+import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.PickLocationUsersDTO;
+import com.a08r.pick_location.models.location.PickLocationEntity;
 import com.a08r.pick_location.models.mapper.IPickLocationUsersMapper;
 import com.a08r.pick_location.models.mapper.PickLocationUsersMapperImpl;
 import com.a08r.pick_location.models.users.PickLocationUsersEntity;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class PickLocationUsersServicesImpl implements IPickLocationUsersServices {
+
 
     private final IPickLocationUsersRepository iPickLocationUsersRepository;
     private static final IPickLocationUsersMapper I_PICK_LOCATION_USERS_MAPPER = new PickLocationUsersMapperImpl();
@@ -90,6 +93,31 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
 
 
     }
+
+    @Override
+    public ResponseEntity<PickLocationUsersDTO> updateUser(Long id, PickLocationUsersDTO newPickLocationUserDTO) {
+        Optional<PickLocationUsersEntity> pickLocationUsersEntity = iPickLocationUsersRepository.findById(id);
+        if (pickLocationUsersEntity.isEmpty()) {
+            throw new RecordNotFoundException("the user with id: " + id + " not found!...");
+        }
+
+        PickLocationUsersEntity existingPickLocationUsersEntity = pickLocationUsersEntity.get();
+
+        existingPickLocationUsersEntity.setUserName(newPickLocationUserDTO.getUsername());
+        existingPickLocationUsersEntity.setPassword(newPickLocationUserDTO.getPassword());
+        existingPickLocationUsersEntity.setRole(newPickLocationUserDTO.getRole());
+        existingPickLocationUsersEntity.setControlUnit(newPickLocationUserDTO.getControlUnit());
+        existingPickLocationUsersEntity.setTechnicalId(newPickLocationUserDTO.getTechnicalId());
+
+        PickLocationUsersEntity updatedPickLocationUsersEntity = iPickLocationUsersRepository.save(existingPickLocationUsersEntity);
+
+        PickLocationUsersDTO pickLocationUsersDTO = I_PICK_LOCATION_USERS_MAPPER
+                .pickLocationUsersEntityToPickLocationUsersDTO(updatedPickLocationUsersEntity);
+
+        return new ResponseEntity<>(pickLocationUsersDTO, HttpStatus.OK);
+    }
+
+
     @Override
     public ResponseEntity<String> remove(Long id) {
         boolean exists = iPickLocationUsersRepository.existsById(id);
@@ -99,6 +127,6 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
         }
         this.iPickLocationUsersRepository.deleteById(id);
         return new ResponseEntity<>("The item has been deleted successfully!", HttpStatus.OK);
-        }
+    }
 
 }

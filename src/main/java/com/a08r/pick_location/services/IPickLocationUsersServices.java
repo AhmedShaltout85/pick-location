@@ -1,5 +1,6 @@
 package com.a08r.pick_location.services;
 
+import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.PickLocationUsersDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -17,6 +18,8 @@ public interface IPickLocationUsersServices {
     ResponseEntity<PickLocationUsersDTO> findUserByUserNameAndPassword(String userName, String password);
 
     ResponseEntity<List<String>> getUsersByRoleAndControlUnit(int role,String controlUnit);
+
+    ResponseEntity<PickLocationUsersDTO> updateUser(Long id, PickLocationUsersDTO newPickLocationUserDTO);
 
     ResponseEntity<String> remove(Long id);
 

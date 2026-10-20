@@ -1,5 +1,6 @@
 package com.a08r.pick_location.controllers;
 
+import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.PickLocationUsersDTO;
 import com.a08r.pick_location.services.IPickLocationUsersServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,13 @@ public class PickLocationUsersController {
     @GetMapping("/role/{role}/control-unit/{controlUnit}")
     public ResponseEntity<List<String>> getUsersByRoleAndControlUnit(@PathVariable int role, @PathVariable String controlUnit) {
         return this.iPickLocationUsersServices.getUsersByRoleAndControlUnit(role, controlUnit);
+    }
+
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/users/id/1
+    @PutMapping(path = "/id/{id}")
+    public ResponseEntity<PickLocationUsersDTO> updateUser(@PathVariable Long id,
+                                                         @RequestBody PickLocationUsersDTO pickLocationUserDTO){
+        return this.iPickLocationUsersServices.updateUser(id, pickLocationUserDTO);
     }
 
     //TODO://DELETE http://localhost:9999/pick-location/api/v1/get-loc/remove-user/{id}
