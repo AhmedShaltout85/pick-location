@@ -1,6 +1,7 @@
 package com.a08r.pick_location.services;
 
 import com.a08r.pick_location.errors.RecordNotFoundException;
+import com.a08r.pick_location.models.dto.ChangePasswordRequestDTO;
 import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.PickLocationUsersDTO;
 import com.a08r.pick_location.models.location.PickLocationEntity;
@@ -116,7 +117,53 @@ public class PickLocationUsersServicesImpl implements IPickLocationUsersServices
 
         return new ResponseEntity<>(pickLocationUsersDTO, HttpStatus.OK);
     }
+//TODO:
+@Override
+public ResponseEntity<String> changePassword(ChangePasswordRequestDTO request) {
 
+    // 1) basic validation
+    if (request.getUserName() == null || request.getUserName().isBlank()
+            || request.getOldPassword() == null || request.getOldPassword().isBlank()
+            || request.getNewPassword() == null || request.getNewPassword().isBlank()) {
+        return new ResponseEntity<>("userName, oldPassword and newPassword are required.",
+                HttpStatus.BAD_REQUEST);
+    }
+
+    // 2) find the user
+    Optional<PickLocationUsersEntity> pickLocationUsersEntity =
+            iPickLocationUsersRepository.findByUserName(request.getUserName());
+
+    if (pickLocationUsersEntity.isEmpty()) {
+        throw new RecordNotFoundException(
+                "the user with username: " + request.getUserName() + " not found!...");
+    }
+
+    PickLocationUsersEntity user = pickLocationUsersEntity.get();
+
+    // 3) verify old password
+    if (!user.getPassword().equals(request.getOldPassword())) {
+        return new ResponseEntity<>("Old password is incorrect.", HttpStatus.UNAUTHORIZED);
+        // or HttpStatus.BAD_REQUEST / FORBIDDEN depending on your semantics
+    }
+
+    // 4) prevent "new same as old"
+    if (user.getPassword().equals(request.getNewPassword())) {
+        return new ResponseEntity<>("New password must be different from the old one.",
+                HttpStatus.BAD_REQUEST);
+    }
+
+    // 5) optionally: minimum length / complexity check
+    if (request.getNewPassword().length() < 6) {
+        return new ResponseEntity<>("New password must be at least 6 characters.",
+                HttpStatus.BAD_REQUEST);
+    }
+
+    // 6) update & save
+    user.setPassword(request.getNewPassword());
+    iPickLocationUsersRepository.save(user);
+
+    return new ResponseEntity<>("Password updated successfully!", HttpStatus.OK);
+}
 
     @Override
     public ResponseEntity<String> remove(Long id) {

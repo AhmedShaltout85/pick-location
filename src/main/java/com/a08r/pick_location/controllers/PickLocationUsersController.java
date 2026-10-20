@@ -1,5 +1,6 @@
 package com.a08r.pick_location.controllers;
 
+import com.a08r.pick_location.models.dto.ChangePasswordRequestDTO;
 import com.a08r.pick_location.models.dto.PickLocationDTO;
 import com.a08r.pick_location.models.dto.PickLocationUsersDTO;
 import com.a08r.pick_location.services.IPickLocationUsersServices;
@@ -69,6 +70,14 @@ public class PickLocationUsersController {
     @DeleteMapping(path = "/remove-user/{id}")
     public ResponseEntity<String> remove(@PathVariable Long id){
         return this.iPickLocationUsersServices.remove(id);
+    }
+
+    // PickLocationUsersController.java
+
+    //TODO://PUT http://localhost:9999/pick-location/api/v1/users/change-password
+    @PutMapping("/change-password")
+    public ResponseEntity<String> changePassword(@RequestBody ChangePasswordRequestDTO request) {
+        return this.iPickLocationUsersServices.changePassword(request);
     }
 
 }
